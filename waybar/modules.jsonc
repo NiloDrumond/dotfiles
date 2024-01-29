@@ -10,7 +10,7 @@
 			"default": ""
         },
         "persistent-workspaces": {
-    "*": 5
+    "*": 3
         }       
     },
 
@@ -50,7 +50,7 @@
         "return-type": "json",       
         "exec": "~/.config/scripts/updates.sh",
         "restart-interval": 30,
-        "on-click": "kitty --session sessions/installupdates",
+        "on-click": "kitty --session sessions/installupdates"
     },
     
     // Power Menu
@@ -108,8 +108,8 @@
     "pulseaudio": {
         "scroll-step": 0.2, // %, can be a float
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
@@ -128,11 +128,12 @@
 
     // Bluetooth
     "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "",
-        "format-off": "",
+        "format": "󰂯 {status}",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
         "interval": 30,
-        "on-click": "blueman-manager"
+        "on-click": "blueman-manager",
+        "on-click-right": "rfkill toggle bluetooth"
     },
 }
 

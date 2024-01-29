@@ -17,6 +17,7 @@
     "include": ["~/.config/waybar/modules.jsonc"],
 
     "modules-left": [
+        "wlr/taskbar",
         "hyprland/window"
     ],
 
@@ -31,6 +32,7 @@
         "battery", 
         "pulseaudio",
         "network",
+        "bluetooth",
         "clock",
         "custom/exit"
     ]
