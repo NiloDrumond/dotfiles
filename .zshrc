@@ -1,0 +1,63 @@
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ Oh My Zsh                                                │
+#  ╰──────────────────────────────────────────────────────────╯
+
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME=""
+
+# this has to be set before loading plugins
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+
+plugins=(
+    git
+    z
+    fzf
+    zsh-nvm
+    zsh-interactive-cd
+    # Completions - Start
+    bun
+    zsh-better-npm-completion
+    # Completions - End
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    history-substring-search
+)
+
+source $ZSH/oh-my-zsh.sh
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ Variables                                                │
+#  ╰──────────────────────────────────────────────────────────╯
+
+export PATH=$PATH:~/.cargo/bin
+export EDITOR="nvim"
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ Aliases                                                  │
+#  ╰──────────────────────────────────────────────────────────╯
+
+alias v='NVIM_APPNAME=newvim nvim'
+alias rgf="rg --files | rg"
+alias rn=". ranger"
+alias gvim="nvim --listen ~/.cache/nvim/godot.pipe ."
+# alias rvim="XDG_CONFIG_HOME=~/.config/nvim.rust XDG_DATA_HOME=~/.local/share/nvim.rust nvim -u .config/nvim.rust/init.lua"
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │ Starship                                                 │
+#  ╰──────────────────────────────────────────────────────────╯
+
+eval "$(starship init zsh)"
+
+
+# SSH-Agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi

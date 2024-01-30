@@ -20,4 +20,5 @@ create_symlink nvim ~/.config/newvim
 create_symlink rofi ~/.config/rofi
 create_symlink waybar ~/.config/waybar
 create_symlink neofetch ~/.config/neofetch
-
+create_symlink ssh/config ~/.ssh/config
+create_symlink .zshrc ~/.zshrc
