@@ -1,1 +1,1 @@
-./.install/installer.sh
+~/dotfiles/.install/installer.sh

@@ -41,10 +41,16 @@ export EDITOR="nvim"
 #  │ Aliases                                                  │
 #  ╰──────────────────────────────────────────────────────────╯
 
-alias v='NVIM_APPNAME=newvim nvim'
-alias rgf="rg --files | rg"
+alias v="nvim"
+alias safev='NVIM_APPNAME=nvchadvim nvim'
+alias rgf="rg --files --hidden | rg"
 alias rn=". ranger"
 alias gvim="nvim --listen ~/.cache/nvim/godot.pipe ."
+alias pac-installed="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias pac-list-unused="pacman -Qdt"
+alias pac-remove-unused="pacman -Rsn $(pacman -Qdtq)"
+alias dot="nvim ~/dotfiles"
+alias doti="~/dotfiles/install.sh"
 # alias rvim="XDG_CONFIG_HOME=~/.config/nvim.rust XDG_DATA_HOME=~/.local/share/nvim.rust nvim -u .config/nvim.rust/init.lua"
 
 #  ╭──────────────────────────────────────────────────────────╮

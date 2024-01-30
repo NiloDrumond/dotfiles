@@ -17,7 +17,7 @@ echo -e "\033[31mWarning: $dest already exists but is not a symbolic link. Skipp
 
 # Directories
 create_symlink hypr ~/.config/hypr
-create_symlink nvim ~/.config/newvim
+create_symlink nvim ~/.config/nvim
 create_symlink rofi ~/.config/rofi
 create_symlink waybar ~/.config/waybar
 create_symlink neofetch ~/.config/neofetch
