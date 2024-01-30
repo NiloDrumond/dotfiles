@@ -2,7 +2,7 @@ function create_symlink {
     local src=$1
     local dest=$2
     if [[ ! $src =~ ^~ ]]; then
-        src="~/dotfiles/$src"
+        src="$HOME/dotfiles/$src"
     fi
 
     if [[ -L $dest ]]; then
@@ -19,4 +19,5 @@ create_symlink hypr ~/.config/hypr
 create_symlink nvim ~/.config/newvim
 create_symlink rofi ~/.config/rofi
 create_symlink waybar ~/.config/waybar
+create_symlink neofetch ~/.config/neofetch
 
