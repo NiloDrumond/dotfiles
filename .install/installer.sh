@@ -15,10 +15,14 @@ echo -e "\033[31mWarning: $dest already exists but is not a symbolic link. Skipp
     fi
 }
 
+# Directories
 create_symlink hypr ~/.config/hypr
 create_symlink nvim ~/.config/newvim
 create_symlink rofi ~/.config/rofi
 create_symlink waybar ~/.config/waybar
 create_symlink neofetch ~/.config/neofetch
+
+# Files
 create_symlink ssh/config ~/.ssh/config
 create_symlink .zshrc ~/.zshrc
+create_symlink starship/starship.toml ~/.config/starship.toml
