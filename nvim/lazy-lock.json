@@ -1,5 +1,9 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
+  "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
+  "cmp-nvim-lsp-document-symbol": { "branch": "main", "commit": "f0f53f704c08ea501f9d222b23491b0d354644b0" },
+  "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1" },
+  "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "kanagawa.nvim": { "branch": "master", "commit": "c19b9023842697ec92caf72cd3599f7dd7be4456" },
   "kitty-scrollback.nvim": { "branch": "main", "commit": "bb5332b8ec0763b9e611f8cabf4165ed8c3893f5" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
@@ -8,6 +12,7 @@
   "neodev.nvim": { "branch": "main", "commit": "2793ba3127c2c93ee486b9072a3ef129eeb950cc" },
   "neowords.nvim": { "branch": "main", "commit": "042d437f2a9eedffde1ab71238c95ed177e45b59" },
   "nightfox.nvim": { "branch": "main", "commit": "5a7746360f044820a97e654fa4fc7043c744e8e8" },
+  "nvim-cmp": { "branch": "main", "commit": "538e37ba87284942c1d76ed38dd497e54e65b891" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "dde3084106a70b9a79d48f426f6d6fec6fd203f7" },
   "nvim-lspconfig": { "branch": "master", "commit": "e85816c5803410cacb52e9b4fbdb72a1f1a6bd11" },
   "nvim-tree.lua": { "branch": "master", "commit": "50f30bcd8c62ac4a83d133d738f268279f2c2ce2" },

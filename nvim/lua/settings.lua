@@ -4,7 +4,7 @@ vim.keymap.set("v", "<Space>", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = " "
 
 local options = {
-	cmdheight      = 2,
+	cmdheight      = 1,
 	cursorline     = true,
 	expandtab      = true, --- Use spaces instead of tabs
 	-- https://stackoverflow.com/a/2288438

@@ -24,6 +24,16 @@ require("lazy").setup({
     lazy = false,
   },
   {
+    'hrsh7th/nvim-cmp',
+    lazy = false,
+    dependencies = {
+      { 'hrsh7th/cmp-nvim-lsp',                 lazy = false },
+      { 'hrsh7th/cmp-path',                     lazy = false },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help',  lazy = false },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol', lazy = false },
+    },
+  },
+  {
     "ckipp01/stylua-nvim",
     build = "cargo install stylua"
   },
