@@ -15,6 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("settings")
 require("plugins")
+require("autocmds")
+require("lsp")
 
 -- NvimTree requirements
 -- disable netrw at the very start of your init.lua

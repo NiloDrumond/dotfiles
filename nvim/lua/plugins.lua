@@ -1,12 +1,33 @@
 require("lazy").setup({
 	{
+		"williamboman/mason.nvim",
+		lazy = false,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false,
+	},
+	{
+		"ckipp01/stylua-nvim",
+		build = "cargo install stylua"
+	},
+	{
+		"folke/neodev.nvim",
+		config = function()
+			require("neodev").setup({
+			})
+		end
+	},
+	{
 		"mikesmithgh/kitty-scrollback.nvim",
-		enabled = true,
 		lazy = true,
 		cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
 		event = { "User KittyScrollbackLaunch" },
-		-- version = '*', -- latest stable version, may have breaking changes if major version changed
-		-- version = '^4.0.0', -- pin major version, include fixes and features that do not have breaking changes
+		version = '^4.0.0', -- pin major version, include fixes and features that do not have breaking changes
 		config = function()
 			require("kitty-scrollback").setup()
 		end,
@@ -68,7 +89,7 @@ require("lazy").setup({
 			vim.o.timeoutlen = 300
 		end,
 		config = function()
-			require("configs.which-key")
+			require("mappings")
 		end,
 	},
 })
