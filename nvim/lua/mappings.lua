@@ -29,6 +29,23 @@ local visual_opts = {
   nowait = false,
 }
 
+local operator_opts = {
+  mode = "o",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
+
+local insert_opts = {
+  mode = "i",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = false,
+}
 
 local visual_leader_opts = {
   mode = "v",
@@ -38,6 +55,7 @@ local visual_leader_opts = {
   noremap = true,
   nowait = false,
 }
+
 
 -- Mappings
 
@@ -54,11 +72,13 @@ if ok then
 
   wk.register(subword_movement_mappings, normal_opts)
   wk.register(subword_movement_mappings, visual_opts)
+  wk.register(subword_movement_mappings, operator_opts)
 end
 
 local normal_mappings = {
+  ["<F1>"] = { "", "which_key_ignore" },
   ["gd"] = { function()
-    vim.lsp.buf.definition()
+    vim.lsp.buf.definDiagnosticsition()
   end, "Go to definition" },
   ["gD"] = { function()
     vim.lsp.buf.declaration()
@@ -69,11 +89,11 @@ local normal_mappings = {
 
   ["[g"] = {
     function()
-      vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 }})
+      vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 } })
     end, "Prev diagnostic" },
   ["]g"] = {
     function()
-      vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 }})
+      vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 } })
     end, "Next diagnostic" },
   ["gl"] = {
     function()
@@ -92,12 +112,6 @@ local normal_mappings = {
       vim.lsp.buf.implementations()
     end,
     "Go to implementation"
-  },
-  ["<leader>"] = {
-    function()
-      vim.lsp.buf.format({ async = true })
-    end,
-    "Format"
   },
   ["<BS>"] = {
     function()
@@ -118,9 +132,16 @@ local normal_mappings = {
 wk.register(normal_mappings, normal_opts)
 
 local normal_leader_mappings = {
-  ["y"] = { '"+y', "Yank(y) to clipboard" },
-  ["Y"] = { '"+yg_', "Yank(Y) end to clipboard" },
-  ["yA"] = { 'ggVG"+y', "Yank buffer to clipboard" },
+  ["<leader>"] = {
+    function()
+      vim.lsp.buf.format({ async = true })
+    end,
+    "Format"
+  },
+  ["y"] = { ':let @+=getreg()<CR>', 'Register " to clipboard' },
+  -- ["Y"] = { '"+yg_', "Yank(Y) end to clipboard" },
+  -- ["yA"] = { 'ggVG"+y', "Yank buffer to clipboard" },
+  -- ["p"] = { ':normal! ""p<CR>', "Clipboard to register" },
   ["p"] = { '"+p', "Paste(p) from clipboard" },
   ["P"] = { '"+P', "Paste(P) from clipboard" },
   ["e"] = {
@@ -145,7 +166,10 @@ local normal_leader_mappings = {
     name = "Actions",
     ["f"] = {
       "<cmd>NvimTreeFindFile<cr>",
-      "Find file",
+      "NvimTree: Find file",
+    },
+    ["r"] = {
+      "<cmd>set norelativenumber!<CR>", "Toggle relative numbers"
     },
   },
   ["f"] = {
@@ -168,10 +192,14 @@ local visual_mappings = {
 wk.register(visual_mappings, visual_opts)
 
 local visual_leader_mappings = {
-  ["y"] = { '"+y', "Yank to clipboard" },
   ["p"] = { '"+p', "Paste(p) from clipboard" },
   ["P"] = { '"+P', "Paste(P) from clipboard" },
 }
 
 wk.register(visual_leader_mappings, visual_leader_opts)
-wk.register(visual_leader_mappings, visual_leader_opts)
+
+local insert_mappings = {
+  ["<C-p>"] = { "<C-r>", "Paste" }
+}
+
+wk.register(insert_mappings, insert_opts)
