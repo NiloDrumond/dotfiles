@@ -6,9 +6,6 @@ if not mason_ok or not mason_lsp_ok then
 end
 
 mason.setup({
-	ui = {
-		border = "rounded",
-	}
 })
 
 mason_lsp.setup({

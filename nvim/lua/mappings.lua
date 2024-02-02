@@ -132,6 +132,7 @@ local normal_mappings = {
 wk.register(normal_mappings, normal_opts)
 
 local normal_leader_mappings = {
+  ["b"] = { "<cmd>Neotree float buffers<CR>", "Buffers" },
   ["<leader>"] = {
     function()
       vim.lsp.buf.format({ async = true })
@@ -145,7 +146,7 @@ local normal_leader_mappings = {
   ["p"] = { '"+p', "Paste(p) from clipboard" },
   ["P"] = { '"+P', "Paste(P) from clipboard" },
   ["e"] = {
-    "<cmd>NvimTreeToggle<cr>",
+    "<cmd>Neotree toggle<cr>",
     "Toggle tree",
   },
   ["c"] = {
@@ -165,8 +166,8 @@ local normal_leader_mappings = {
   ["a"] = {
     name = "Actions",
     ["f"] = {
-      "<cmd>NvimTreeFindFile<cr>",
-      "NvimTree: Find file",
+      "<cmd>Neotree reveal<cr>",
+      "Tree: Find file",
     },
     ["r"] = {
       "<cmd>set norelativenumber!<CR>", "Toggle relative numbers"
@@ -187,6 +188,8 @@ local visual_mappings = {
   ["x"] = { '"_x', "which_key_ignore" },
   ["p"] = { '"_dp', "which_key_ignore" },
   ["<C-s>"] = { "<ESC> :w<CR>", "Save file" },
+  ["<S-j>"] = { ":move '>+1<CR>gv-gv", "Move line down" },
+  ["<S-k>"] = { ":move '<-2<CR>gv-gv", "Move line down" },
 }
 
 wk.register(visual_mappings, visual_opts)
@@ -199,6 +202,7 @@ local visual_leader_mappings = {
 wk.register(visual_leader_mappings, visual_leader_opts)
 
 local insert_mappings = {
+  ["<C-s>"] = { "<ESC> :w<CR>", "Save file" },
   ["<C-p>"] = { "<C-r>", "Paste" }
 }
 
