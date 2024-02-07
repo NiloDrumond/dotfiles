@@ -24,6 +24,13 @@ require('kanagawa').setup({
     local theme = colors.theme
     local palette = colors.palette
     return {
+      RainbowDelimiterRed = { fg = palette.autumnRed },
+      RainbowDelimiterYellow = { fg = palette.roninYellow },
+      RainbowDelimiterBlue = { fg = palette.crystalBlue },
+      RainbowDelimiterOrange = { fg = palette.surimiOrange },
+      RainbowDelimiterGreen = { fg = palette.autumnGreen },
+      RainbowDelimiterViolet = { fg = palette.oniViolet },
+      RainbowDelimiterCyan = { fg = palette.dragonBlue },
       -- NormalFloat = { bg = "none" },
       FloatBorder = { bg = "none" },
       FloatTitle = { bg = "none" },

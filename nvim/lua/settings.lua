@@ -19,7 +19,7 @@ local options = {
 
   scrolloff      = 8,                 --- Always keep space when scrolling to bottom/top edge
   shiftwidth     = 2,                 --- Change a number of space characeters inseted for indentation
-  showtabline    = 2,                 --- Always show tabs
+  showtabline    = 1,                 --- Always show tabs
   swapfile       = false,             --- Swap not needed
   signcolumn     = "yes:1",           --- Add extra sign column next to line number
   smartindent    = true,              --- Makes indenting smart

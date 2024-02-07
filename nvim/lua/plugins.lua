@@ -1,5 +1,27 @@
 require("lazy").setup({
   {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("configs.lualine")
+    end
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require("ibl").setup()
+    end
+  },
+  { "HiPhish/rainbow-delimiters.nvim" },
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("configs.alpha")
+    end
+  },
+  {
     "numToStr/Comment.nvim",
     config = function()
       require("configs.comment")

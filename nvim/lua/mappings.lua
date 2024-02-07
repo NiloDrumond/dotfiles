@@ -132,6 +132,10 @@ local normal_mappings = {
 wk.register(normal_mappings, normal_opts)
 
 local normal_leader_mappings = {
+  ["g"] = {
+    name = "Git",
+    ["s"] = { "<cmd>Neotree float git_status<CR>", "Git status" },
+  },
   ["b"] = { "<cmd>Neotree float buffers<CR>", "Buffers" },
   ["<leader>"] = {
     function()
