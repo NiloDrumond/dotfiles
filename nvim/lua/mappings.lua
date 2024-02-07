@@ -78,7 +78,7 @@ end
 local normal_mappings = {
   ["<F1>"] = { "", "which_key_ignore" },
   ["gd"] = { function()
-    vim.lsp.buf.definDiagnosticsition()
+    vim.lsp.buf.definition()
   end, "Go to definition" },
   ["gD"] = { function()
     vim.lsp.buf.declaration()

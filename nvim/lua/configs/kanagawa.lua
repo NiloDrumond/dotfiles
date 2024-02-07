@@ -24,6 +24,8 @@ require('kanagawa').setup({
     local theme = colors.theme
     local palette = colors.palette
     return {
+      IblIndent = { fg = palette.sumiInk5 },
+      IblWhitespace = { fg = palette.sumiInk5 },
       RainbowDelimiterRed = { fg = palette.autumnRed },
       RainbowDelimiterYellow = { fg = palette.roninYellow },
       RainbowDelimiterBlue = { fg = palette.crystalBlue },

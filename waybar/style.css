@@ -48,7 +48,6 @@ window#waybar {
     border: 0px;
     font-weight: bold;
     font-style: normal;
-    opacity: 0.8;
     font-size: 16px;
     color: @textcolor1;
 }
@@ -106,7 +105,6 @@ tooltip label {
     color:@textcolor1;
     font-size:16px;
     font-weight:normal;
-    opacity:0.8;
 }
 
 window#waybar.empty #window {
@@ -120,11 +118,10 @@ window#waybar.empty #window {
 #taskbar {
     background: @backgrounddark;
     margin: 3px 15px 3px 15px;
-    padding:0px;
+    padding:2px 0px;
     border-radius: 15px;
     font-weight: normal;
     font-style: normal;
-    opacity:0.8;
     border: 3px solid @backgrounddark;
 }
 
@@ -179,7 +176,7 @@ window#waybar.empty #window {
     border-radius: 16px;
     margin: 0 8px;
     background-color: @backgrounddark;
-    font-size: 16px;
+    font-size: 15px;
     color: @textcolor1;
 }
 

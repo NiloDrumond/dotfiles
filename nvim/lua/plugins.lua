@@ -1,5 +1,11 @@
 require("lazy").setup({
   {
+    'nvimtools/none-ls.nvim',
+    config = function()
+      require("configs.null")
+    end
+  },
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()

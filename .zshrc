@@ -51,6 +51,7 @@ alias pac-list-unused="pacman -Qdt"
 alias pac-remove-unused="pacman -Rsn $(pacman -Qdtq)"
 alias dot="cd ~/dotfiles && nvim"
 alias doti="~/dotfiles/install.sh"
+alias archwiki="firefox /usr/share/doc/arch-wiki/html/en/Table_of_contents.html"
 # alias rvim="XDG_CONFIG_HOME=~/.config/nvim.rust XDG_DATA_HOME=~/.local/share/nvim.rust nvim -u .config/nvim.rust/init.lua"
 
 #  ╭──────────────────────────────────────────────────────────╮
