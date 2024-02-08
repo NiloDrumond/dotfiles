@@ -56,7 +56,6 @@ local visual_leader_opts = {
   nowait = false,
 }
 
-
 -- Mappings
 
 -- Neowords
@@ -77,51 +76,70 @@ end
 
 local normal_mappings = {
   ["<F1>"] = { "", "which_key_ignore" },
-  ["gd"] = { function()
-    vim.lsp.buf.definition()
-  end, "Go to definition" },
-  ["gD"] = { function()
-    vim.lsp.buf.declaration()
-  end, "Go to declaration" },
-  ["gr"] = { function()
-    vim.lsp.buf.references({ includeDeclaration = false })
-  end, "See references" },
+  ["gd"] = {
+    function()
+      vim.lsp.buf.definition()
+    end,
+    "Go to definition",
+  },
+  ["gD"] = {
+    function()
+      vim.lsp.buf.declaration()
+    end,
+    "Go to declaration",
+  },
+  ["gr"] = {
+    function()
+      vim.lsp.buf.references({ includeDeclaration = false })
+    end,
+    "See references",
+  },
 
   ["[g"] = {
     function()
-      vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 } })
-    end, "Prev diagnostic" },
+      vim.diagnostic.goto_prev({ float = { border = "rounded", max_width = 100 } })
+    end,
+    "Prev diagnostic",
+  },
   ["]g"] = {
     function()
-      vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 } })
-    end, "Next diagnostic" },
+      vim.diagnostic.goto_next({ float = { border = "rounded", max_width = 100 } })
+    end,
+    "Next diagnostic",
+  },
   ["gl"] = {
     function()
-      vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })
-    end, "Diagnostics" },
+      vim.diagnostic.open_float({ border = "rounded", max_width = 100 })
+    end,
+    "Diagnostics",
+  },
   ["K"] = {
-    function() vim.lsp.buf.hover() end,
-    "LSP Hover"
+    function()
+      vim.lsp.buf.hover()
+    end,
+    "LSP Hover",
   },
   ["m"] = {
-    function() vim.lsp.buf.signature_help() end,
-    "Signature help"
+    function()
+      vim.lsp.buf.signature_help()
+    end,
+    "Signature help",
   },
   ["gi"] = {
     function()
       vim.lsp.buf.implementations()
     end,
-    "Go to implementation"
+    "Go to implementation",
   },
   ["<BS>"] = {
     function()
       vim.cmd("noh")
       vim.api.nvim_input("<ESC>")
     end,
-    "Clear highlights"
+    "Clear highlights",
   },
   ["x"] = { '"_x', "which_key_ignore" },
-  ["yA"] = { 'ggVGy', "Yank buffer" },
+  ["yA"] = { "ggVGy", "Yank buffer" },
   ["<C-s>"] = { ":w<CR>", "Save file" },
   ["<C-h>"] = { "<C-w>h", "Move to left window" },
   ["<C-j>"] = { "<C-w>j", "Move to bottom window" },
@@ -141,9 +159,9 @@ local normal_leader_mappings = {
     function()
       vim.lsp.buf.format({ async = true })
     end,
-    "Format"
+    "Format",
   },
-  ["y"] = { ':let @+=getreg()<CR>', 'Register " to clipboard' },
+  ["y"] = { ":let @+=getreg()<CR>", 'Register " to clipboard' },
   -- ["Y"] = { '"+yg_', "Yank(Y) end to clipboard" },
   -- ["yA"] = { 'ggVG"+y', "Yank buffer to clipboard" },
   -- ["p"] = { ':normal! ""p<CR>', "Clipboard to register" },
@@ -156,16 +174,29 @@ local normal_leader_mappings = {
   ["c"] = {
     name = "LSP",
     ["a"] = {
-      function() vim.lsp.buf.code_action() end, "Code action"
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "Code action",
     },
-    ["d"] = { function() vim.lsp.buf.type_definition() end, "Type definition" },
-    ["r"] = { function() vim.lsp.buf.rename() end, "Rename" },
+    ["d"] = {
+      function()
+        vim.lsp.buf.type_definition()
+      end,
+      "Type definition",
+    },
+    ["r"] = {
+      function()
+        vim.lsp.buf.rename()
+      end,
+      "Rename",
+    },
     ["f"] = {
       function()
         vim.lsp.buf.format({ async = true })
       end,
-      "Format"
-    }
+      "Format",
+    },
   },
   ["a"] = {
     name = "Actions",
@@ -174,11 +205,14 @@ local normal_leader_mappings = {
       "Tree: Find file",
     },
     ["r"] = {
-      "<cmd>set norelativenumber!<CR>", "Toggle relative numbers"
+      "<cmd>set norelativenumber!<CR>",
+      "Toggle relative numbers",
     },
   },
   ["f"] = {
     name = "Find",
+    ["w"] = { "<cmd>Telescope live_grep<CR>", "Find word" },
+    ["f"] = { "<cmd>Telescope find_files<CR>", "Find file" },
   },
   ["/"] = {
     name = "Neovim",
@@ -207,7 +241,7 @@ wk.register(visual_leader_mappings, visual_leader_opts)
 
 local insert_mappings = {
   ["<C-s>"] = { "<ESC> :w<CR>", "Save file" },
-  ["<C-p>"] = { "<C-r>", "Paste" }
+  ["<C-p>"] = { "<C-r>", "Paste" },
 }
 
 wk.register(insert_mappings, insert_opts)

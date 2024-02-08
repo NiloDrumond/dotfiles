@@ -1,31 +1,48 @@
 require("lazy").setup({
   {
-    'nvimtools/none-ls.nvim',
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
     config = function()
-      require("configs.null")
-    end
+      require("configs.telescope")
+    end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "b0o/schemastore.nvim",
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    config = function()
+      require("lsp.null")
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("configs.lualine")
-    end
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     config = function()
       require("ibl").setup()
-    end
+    end,
   },
   { "HiPhish/rainbow-delimiters.nvim" },
   {
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "goolord/alpha-nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("configs.alpha")
-    end
+    end,
   },
   {
     "numToStr/Comment.nvim",
@@ -35,9 +52,9 @@ require("lazy").setup({
     dependencies = {
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
-        dependencies = { "nvim-treesitter" }
-      }
-    }
+        dependencies = { "nvim-treesitter" },
+      },
+    },
   },
   {
     "williamboman/mason.nvim",
@@ -52,32 +69,31 @@ require("lazy").setup({
     lazy = false,
   },
   {
-    'hrsh7th/nvim-cmp',
+    "hrsh7th/nvim-cmp",
     lazy = false,
     dependencies = {
       { "hrsh7th/cmp-cmdline",                 lazy = false },
-      { 'hrsh7th/cmp-nvim-lsp',                lazy = false },
-      { 'hrsh7th/cmp-path',                    lazy = false },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = false },
+      { "hrsh7th/cmp-nvim-lsp",                lazy = false },
+      { "hrsh7th/cmp-path",                    lazy = false },
+      { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = false },
     },
   },
   {
     "ckipp01/stylua-nvim",
-    build = "cargo install stylua"
+    build = "cargo install stylua",
   },
   {
     "folke/neodev.nvim",
     config = function()
-      require("neodev").setup({
-      })
-    end
+      require("neodev").setup({})
+    end,
   },
   {
     "mikesmithgh/kitty-scrollback.nvim",
     lazy = true,
     cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
     event = { "User KittyScrollbackLaunch" },
-    version = '^4.0.0', -- pin major version, include fixes and features that do not have breaking changes
+    version = "^4.0.0", -- pin major version, include fixes and features that do not have breaking changes
     config = function()
       require("kitty-scrollback").setup()
     end,
@@ -102,7 +118,7 @@ require("lazy").setup({
     },
     config = function()
       require("configs.neotree")
-    end
+    end,
   },
   -- {
   --   "nvim-tree/nvim-tree.lua",

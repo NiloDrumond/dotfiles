@@ -1,18 +1,19 @@
-local mason_ok, mason = pcall(require, 'mason')
-local mason_lsp_ok, mason_lsp = pcall(require, 'mason-lspconfig')
+local mason_ok, mason = pcall(require, "mason")
+local mason_lsp_ok, mason_lsp = pcall(require, "mason-lspconfig")
 
 if not mason_ok or not mason_lsp_ok then
   return
 end
 
-mason.setup({
-})
+-- TODO: ensure installed for formatters:
+-- prettier, jsonlint
+mason.setup({})
 
 mason_lsp.setup({
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
   -- This setting has no relation with the `automatic_installation` setting.
   ---@type string[]
-  ensure_installed = { "lua_ls", "bashls", "tsserver", "prettier", "eslint" },
+  ensure_installed = { "lua_ls", "bashls", "tsserver", "eslint", "jsonls" },
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
