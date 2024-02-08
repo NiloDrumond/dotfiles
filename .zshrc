@@ -75,3 +75,4 @@ fi
 #  ╰──────────────────────────────────────────────────────────╯
 
 source /usr/share/nvm/init-nvm.sh
+source /usr/share/doc/find-the-command/ftc.zsh noprompt quiet
