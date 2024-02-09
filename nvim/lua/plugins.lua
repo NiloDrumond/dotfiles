@@ -1,9 +1,24 @@
 require("lazy").setup({
   {
+    "David-Kunz/cmp-npm",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    ft = "json",
+    config = function()
+      require("cmp-npm").setup({})
+    end,
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("configs.autopair")
+    end,
+  },
+  {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
     -- install jsregexp (optional!).
-    build = "make install_jsregexp"
+    build = "make install_jsregexp",
   },
   {
     "akinsho/toggleterm.nvim",
@@ -153,6 +168,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependencies = { "windwp/nvim-ts-autotag" },
     config = function()
       require("configs.treesitter")
     end,

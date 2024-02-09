@@ -75,6 +75,8 @@ if ok then
 end
 
 local normal_mappings = {
+  ["<Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
+  ["<S-Enter>"] = { "<cmd>call append(line('.') -1, '')<CR>", "Add line above" },
   ["<F1>"] = { "", "which_key_ignore" },
   ["gd"] = {
     function()
