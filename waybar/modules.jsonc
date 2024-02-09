@@ -16,7 +16,7 @@
   "hyprland/language": {
     "format": "   {}",
     "format-en": "US",
-    "format-pt": "BR  "
+    "format-en-intl": "US-INTL  "
   },
   "wlr/taskbar": {
     "format": "{icon}",
