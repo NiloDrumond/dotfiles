@@ -222,6 +222,7 @@ local normal_leader_mappings = {
   },
   ["/"] = {
     name = "Neovim",
+    ["/"] = { "<cmd>Alpha<CR>", "Dashboard" },
     q = { "<cmd>qa<CR>", "Quit" },
   },
 }
