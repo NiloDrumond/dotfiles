@@ -152,6 +152,7 @@ wk.register(normal_mappings, normal_opts)
 local normal_leader_mappings = {
   ["g"] = {
     name = "Git",
+    ["g"] = { "<cmd>LazyGit<CR>", "Lazygit" },
     ["s"] = { "<cmd>Neotree float git_status<CR>", "Git status" },
   },
   ["b"] = { "<cmd>Neotree float buffers<CR>", "Buffers" },
@@ -212,7 +213,12 @@ local normal_leader_mappings = {
   ["f"] = {
     name = "Find",
     ["w"] = { "<cmd>Telescope live_grep<CR>", "Find word" },
-    ["f"] = { "<cmd>Telescope find_files<CR>", "Find file" },
+    ["f"] = {
+      function()
+        require("configs.telescope").pickers.fd()
+      end,
+      "Find file",
+    },
   },
   ["/"] = {
     name = "Neovim",

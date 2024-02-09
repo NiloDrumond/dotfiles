@@ -7,6 +7,9 @@ require("telescope").setup({
     },
     sorting_strategy = "ascending",
 
+    find_files = {
+      find_command = { "fd", "-H", "--type", "f", "-E", ".git" },
+    },
     mappings = {
       i = {
         ["<C-x>"] = false,
@@ -27,3 +30,13 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
+
+local M = { pickers = {} }
+
+M.pickers.fd = function()
+  require("telescope.builtin").find_files({
+    find_command = { "fd", "-H", "--type", "f", "-E", ".git" },
+  })
+end
+
+return M

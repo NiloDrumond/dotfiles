@@ -7,7 +7,9 @@ end
 
 -- TODO: ensure installed for formatters:
 -- prettier, jsonlint
-mason.setup({})
+mason.setup({
+  ensure_installed = { "prettier", "jsonlint" },
+})
 
 mason_lsp.setup({
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }

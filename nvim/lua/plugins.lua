@@ -1,5 +1,11 @@
 require("lazy").setup({
   {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("configs.toggleterm")
+    end,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = {

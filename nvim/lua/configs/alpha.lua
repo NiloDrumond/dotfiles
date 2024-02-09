@@ -4,7 +4,6 @@ if not path_ok then
 end
 
 local dashboard = require("alpha.themes.dashboard")
-local cdir = vim.fn.getcwd()
 local if_nil = vim.F.if_nil
 
 local nvim_web_devicons = {
@@ -153,6 +152,7 @@ local section_mru = {
     {
       type = "group",
       val = function()
+        local cdir = vim.fn.getcwd()
         return { mru(0, cdir) }
       end,
       opts = { shrink_margin = false },
@@ -167,8 +167,8 @@ local buttons = {
     { type = "padding", val = 1 },
     dashboard.button("e", "  New file", "<cmd>ene<CR>"),
     dashboard.button("SPC f f", "󰈞  Find file"),
-    dashboard.button("SPC f g", "󰊄  Live grep"),
-    dashboard.button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
+    dashboard.button("SPC f w", "󰊄  Live grep"),
+    dashboard.button("c", "  Configuration", "<cmd>cd ~/dotfiles/nvim/ <CR>"),
     dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
     dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
   },
