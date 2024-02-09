@@ -37,6 +37,9 @@ bindkey '^[[B' history-substring-search-down
 export PATH=$PATH:~/.cargo/bin
 export EDITOR="nvim"
 
+# Reading dotenv
+[ ! -f .env ] || export $(grep -v '^#' .env | xargs)
+
 #  ╭──────────────────────────────────────────────────────────╮
 #  │ Aliases                                                  │
 #  ╰──────────────────────────────────────────────────────────╯
