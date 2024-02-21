@@ -35,8 +35,12 @@ bindkey '^[[B' history-substring-search-down
 #  ╰──────────────────────────────────────────────────────────╯
 
 export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.local/bin
 export EDITOR="nvim"
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# TODO: not loading before running "zsh" for some reason
 # Reading dotenv
 [ ! -f .env ] || export $(grep -v '^#' .env | xargs)
 
@@ -49,7 +53,8 @@ alias safev='NVIM_APPNAME=nvchadvim nvim'
 alias rgf="rg --files --hidden | rg"
 alias rn=". ranger"
 alias gvim="nvim --listen ~/.cache/nvim/godot.pipe ."
-alias pac-installed="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias pac-installed="pacman -Qqe | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias pac-installed-all="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 alias pac-list-unused="pacman -Qdt"
 alias pac-remove-unused="pacman -Rsn $(pacman -Qdtq)"
 alias dot="cd ~/dotfiles && nvim"
