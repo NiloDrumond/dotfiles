@@ -52,11 +52,14 @@ require("kanagawa").setup({
       NeoTreeBorder = { bg = theme.ui.float.bg, fg = theme.ui.float.bg },
       NeoTreeNormal = { bg = theme.ui.float.bg },
       NeoTreeNormalNC = { bg = theme.ui.float.bg },
+      NeoTreeSymbolicLinkTarget = { fg = palette.autumnRed },
 
       Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
       PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
       PmenuSbar = { bg = theme.ui.bg_m1 },
       PmenuThumb = { bg = theme.ui.bg_p2 },
+
+      ArrowIcon = { fg = palette.peachRed, bg = "NONE" },
     }
   end,
   theme = "wave", -- Load "wave" theme when 'background' option is not set

@@ -1,5 +1,6 @@
 local wk = require("which-key")
 
+
 -- Configs
 
 local normal_opts = {
@@ -72,6 +73,41 @@ if ok then
   wk.register(subword_movement_mappings, normal_opts)
   wk.register(subword_movement_mappings, visual_opts)
   wk.register(subword_movement_mappings, operator_opts)
+end
+
+-- LuaSnip
+local ls_ok, ls = pcall(require, "luasnip")
+if ls_ok then
+  local ls_mappings = {
+    ["<C-h>"] = {
+      function()
+        ls.jump(-1)
+      end,
+      "LuaSnip: jump backward",
+    },
+    ["<C-l>"] = {
+      function()
+        ls.jump(1)
+      end,
+      "LuaSnip: jump forward",
+    },
+    ["<C-k>"] = {
+      function()
+        ls.expand()
+      end,
+      "LuaSnip: expand",
+    },
+    ["<C-j>"] = {
+      function()
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end,
+      "LuaSnip: change active choice",
+    },
+  }
+
+  wk.register(ls_mappings, insert_opts)
 end
 
 local normal_mappings = {
@@ -155,9 +191,9 @@ local normal_leader_mappings = {
   ["g"] = {
     name = "Git",
     ["g"] = { "<cmd>LazyGit<CR>", "Lazygit" },
-    ["s"] = { "<cmd>Neotree float git_status<CR>", "Git status" },
+    -- ["s"] = { "<cmd>Neotree float git_status<CR>", "Git status" },
   },
-  ["b"] = { "<cmd>Neotree float buffers<CR>", "Buffers" },
+  -- ["b"] = { "<cmd>Neotree float buffers<CR>", "Buffers" },
   ["<leader>"] = {
     function()
       vim.lsp.buf.format({ async = true })
@@ -171,7 +207,7 @@ local normal_leader_mappings = {
   ["p"] = { '"+p', "Paste(p) from clipboard" },
   ["P"] = { '"+P', "Paste(P) from clipboard" },
   ["e"] = {
-    "<cmd>Neotree toggle<cr>",
+    "<cmd>NvimTreeToggle<cr>",
     "Toggle tree",
   },
   ["c"] = {
@@ -214,7 +250,12 @@ local normal_leader_mappings = {
   },
   ["f"] = {
     name = "Find",
-    ["w"] = { "<cmd>Telescope live_grep<CR>", "Find word" },
+    ["w"] = {
+      function()
+        require("configs.telescope").pickers.grep()
+      end,
+      "Find word",
+    },
     ["f"] = {
       function()
         require("configs.telescope").pickers.fd()

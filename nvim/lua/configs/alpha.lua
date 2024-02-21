@@ -200,3 +200,4 @@ local config = {
 }
 
 require("alpha").setup(config)
+

@@ -5,23 +5,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Disable diagnostics in node_modules (0 is current buffer only)
-vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })
-vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })
+-- Disable diagnostics in node_modules (0 is current buffer only) vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" }) vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })
 
 -- Enable spell checking for certain file types
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.tex" },
   command = "setlocal spell",
 })
-
-local on_exit = function(obj)
-  print(obj.code)
-  print(obj.signal)
-  print(obj.stdout)
-  print(obj.stderr)
-end
-
 
 -- Update kitty tab title
 local settings = require("settings")
@@ -43,3 +33,14 @@ if settings.kitty_tab_title then
     end,
   })
 end
+
+-- Insane autocmd to refresh neo-tree when closing arrow menu (which happens to be not modifiable)
+-- Check arrow.nvim updates for hooks or something
+vim.api.nvim_create_autocmd("WinClosed", {
+  callback = function(args)
+    local modifiable = vim.api.nvim_buf_get_option(args.buf, "modifiable")
+    if not modifiable then
+      -- require("neo-tree.sources.manager").refresh("arrow")
+    end
+  end,
+})

@@ -6,10 +6,6 @@ require("telescope").setup({
       prompt_position = "top",
     },
     sorting_strategy = "ascending",
-
-    find_files = {
-      find_command = { "fd", "-H", "--type", "f", "-E", ".git" },
-    },
     mappings = {
       i = {
         ["<C-x>"] = false,
@@ -33,10 +29,15 @@ require("telescope").load_extension("fzf")
 
 local M = { pickers = {} }
 
-M.pickers.fd = function()
+M.pickers.fd = function(state)
+  vim.print(state)
   require("telescope.builtin").find_files({
     find_command = { "fd", "-H", "--type", "f", "-E", ".git" },
   })
+end
+
+M.pickers.grep = function()
+  require("telescope.builtin").live_grep()
 end
 
 return M

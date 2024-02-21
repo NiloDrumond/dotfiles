@@ -1,8 +1,39 @@
 require("lazy").setup({
   {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("configs.gitsigns")
+    end
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("configs.tree")
+    end,
+  },
+  -- {
+  --   "saecki/crates.nvim",
+  --   event = { "BufRead Cargo.toml" },
+  --   config = function()
+  --     require("crates").setup({
+  --       null_ls = {
+  --         enabled = true,
+  --         name = "crates.nvim",
+  --       },
+  --     })
+  --   end,
+  -- },
+  {
+    "otavioschwanck/arrow.nvim",
+    config = function()
+      require("configs.arrow")
+    end,
+  },
+  {
     "David-Kunz/cmp-npm",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    ft = "json",
+    dependencies = { "nvim-lua/plenary.nvim", "onsails/lspkind.nvim" },
+    event = { "BufRead package.json" },
     config = function()
       require("cmp-npm").setup({})
     end,
@@ -134,28 +165,17 @@ require("lazy").setup({
   {
     "backdround/neowords.nvim",
   },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    },
-    config = function()
-      require("configs.neotree")
-    end,
-  },
   -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   version = "*",
-  --   lazy = false,
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v3.x",
   --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   --   },
   --   config = function()
-  --     require("nvim-tree").setup({})
+  --     require("configs.neotree")
   --   end,
   -- },
   {
