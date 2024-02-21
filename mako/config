@@ -1,0 +1,12 @@
+margin=10
+border-radius=8
+
+# Colors
+
+background-color=#1F1F28
+text-color=#DCD7BA
+border-color=#7E9CD8
+progress-color=over #313244
+
+[urgency=high]
+border-color=#FFA066
