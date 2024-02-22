@@ -12,7 +12,6 @@ export NVM_LAZY_LOAD=true
 
 plugins=(
     git
-    z
     fzf
     zsh-nvm
     zsh-interactive-cd
@@ -84,3 +83,10 @@ fi
 
 source /usr/share/nvm/init-nvm.sh
 source /usr/share/doc/find-the-command/ftc.zsh noprompt quiet
+eval "$(zoxide init zsh)"
+
+LFCD="$HOME/dotfiles/lf/lfcd.sh"
+if [ -f "$LFCD" ]; then
+    source "$LFCD"
+    alias lf="lfcd"
+fi
