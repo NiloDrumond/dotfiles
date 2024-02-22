@@ -39,9 +39,14 @@ export EDITOR="nvim"
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# TODO: not loading before running "zsh" for some reason
 # Reading dotenv
-[ ! -f .env ] || export $(grep -v '^#' .env | xargs)
+if [ -f "$HOME/dotfiles/.env" ]; then
+    while IFS= read -r line; do
+        if [[ ! $line =~ ^# ]]; then
+            export "$line"
+        fi
+    done < "$HOME/dotfiles/.env"
+fi
 
 #  ╭──────────────────────────────────────────────────────────╮
 #  │ Aliases                                                  │
