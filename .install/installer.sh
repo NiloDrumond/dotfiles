@@ -29,3 +29,4 @@ create_symlink kitty ~/.config/kitty
 create_symlink ssh/config ~/.ssh/config
 create_symlink .zshrc ~/.zshrc
 create_symlink starship/starship.toml ~/.config/starship.toml
+create_symlink nvm/default-packages ~/.nvm/default-packages
