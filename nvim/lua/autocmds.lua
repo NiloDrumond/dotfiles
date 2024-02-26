@@ -44,3 +44,20 @@ vim.api.nvim_create_autocmd("WinClosed", {
     end
   end,
 })
+
+-- Set filetype for rasi files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.rasi" }, command = "setfiletype rasi" })
+
+-- Lazily add crates source to nvim-cmp
+local cmp_ok, cmp = pcall(require, "cmp")
+local crates_ok, crates_cmp = pcall(require, "crates.src.cmp")
+if cmp_ok and crates_ok then
+  crates_cmp.setup()
+  vim.api.nvim_create_autocmd("BufRead", {
+    group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+    pattern = "Cargo.toml",
+    callback = function()
+      cmp.setup.buffer({ sources = { { name = "crates" } } })
+    end,
+  })
+end

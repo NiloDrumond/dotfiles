@@ -1,6 +1,5 @@
 local wk = require("which-key")
 
-
 -- Configs
 
 local normal_opts = {
@@ -111,7 +110,7 @@ if ls_ok then
 end
 
 local normal_mappings = {
-  ["<Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
+  -- ["<Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
   ["<S-Enter>"] = { "<cmd>call append(line('.') -1, '')<CR>", "Add line above" },
   ["<F1>"] = { "", "which_key_ignore" },
   ["gd"] = {
@@ -191,9 +190,10 @@ local normal_leader_mappings = {
   ["g"] = {
     name = "Git",
     ["g"] = { "<cmd>LazyGit<CR>", "Lazygit" },
+    ["b"] = { "<cmd>Gitsigns blame_line<CR>", "Blame line" },
     -- ["s"] = { "<cmd>Neotree float git_status<CR>", "Git status" },
   },
-  -- ["b"] = { "<cmd>Neotree float buffers<CR>", "Buffers" },
+  ["b"] = { "<cmd>Telescope buffers<CR>", "Buffers" },
   ["<leader>"] = {
     function()
       vim.lsp.buf.format({ async = true })
@@ -239,6 +239,10 @@ local normal_leader_mappings = {
   },
   ["a"] = {
     name = "Actions",
+    ["n"] = {
+      "ene",
+      "New buffer",
+    },
     ["f"] = {
       "<cmd>Neotree reveal<cr>",
       "Tree: Find file",
