@@ -1,5 +1,9 @@
 local wk = require("which-key")
 
+wk.setup({
+  triggers_nowait = { "<C-p>" },
+})
+
 -- Configs
 
 local normal_opts = {
@@ -113,6 +117,7 @@ local normal_mappings = {
   -- ["<Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
   ["<S-Enter>"] = { "<cmd>call append(line('.') -1, '')<CR>", "Add line above" },
   ["<F1>"] = { "", "which_key_ignore" },
+  ["<F8>"] = { "<cmd>TagbarToggle<CR>", "Tagbar" },
   ["gd"] = {
     function()
       vim.lsp.buf.definition()
@@ -156,7 +161,7 @@ local normal_mappings = {
     end,
     "LSP Hover",
   },
-  ["m"] = {
+  ["M"] = {
     function()
       vim.lsp.buf.signature_help()
     end,
@@ -191,7 +196,24 @@ local normal_leader_mappings = {
     name = "Git",
     ["g"] = { "<cmd>LazyGit<CR>", "Lazygit" },
     ["b"] = { "<cmd>Gitsigns blame_line<CR>", "Blame line" },
-    -- ["s"] = { "<cmd>Neotree float git_status<CR>", "Git status" },
+    ["s"] = { "<cmd>Telescope git_status<CR>", "Git status" },
+    ["l"] = {
+      name = "Log",
+      ["A"] = {
+        function()
+          require("configs.telescope").pickers.git_commits()
+        end,
+        "commits (Telescope)",
+      },
+      ["a"] = { "<cmd>LazyGitFilter<CR>", "commits" },
+      ["C"] = {
+        function()
+          require("configs.telescope").pickers.git_buffer_commits()
+        end,
+        "buffer commits (Telescope)",
+      },
+      ["c"] = { "<cmd>LazyGitFilterCurrentFile<CR>", "buffer commits" },
+    },
   },
   ["b"] = { "<cmd>Telescope buffers<CR>", "Buffers" },
   ["<leader>"] = {
@@ -201,11 +223,8 @@ local normal_leader_mappings = {
     "Format",
   },
   ["y"] = { ":let @+=getreg()<CR>", 'Register " to clipboard' },
-  -- ["Y"] = { '"+yg_', "Yank(Y) end to clipboard" },
-  -- ["yA"] = { 'ggVG"+y', "Yank buffer to clipboard" },
-  -- ["p"] = { ':normal! ""p<CR>', "Clipboard to register" },
   ["p"] = { '"+p', "Paste(p) from clipboard" },
-  ["P"] = { '"+P', "Paste(P) from clipboard" },
+  ["P"] = { 'o<ESC>"+p', "Paste(P) from clipboard" },
   ["e"] = {
     "<cmd>NvimTreeToggle<cr>",
     "Toggle tree",
@@ -239,6 +258,10 @@ local normal_leader_mappings = {
   },
   ["a"] = {
     name = "Actions",
+    ["z"] = {
+      "<cmd>ZenMode<CR>",
+      "Zen mode",
+    },
     ["n"] = {
       "ene",
       "New buffer",

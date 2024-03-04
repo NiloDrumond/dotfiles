@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local types = require("cmp.types")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
@@ -40,15 +41,27 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert({
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Up
-    ["<C-d>"] = cmp.mapping.scroll_docs(4), -- Down
-    -- C-b (back) C-f (forward) for snippet placeholder navigation.
+  mapping = {
+    ["<Down>"] = {
+      i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
+    },
+    ["<Up>"] = {
+      i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
+    },
+    ["<C-y>"] = {
+      i = cmp.mapping.confirm({ select = false }),
+    },
+    ["<C-e>"] = {
+      i = cmp.mapping.abort(),
+    },
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
+    -- C-b (back) C-f (forward) for snippet placeholder navigation.
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -67,7 +80,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-  }),
+  },
   sources = {
     { name = "npm",                    keyword_length = 4 },
     { name = "nvim_lsp",               priority = 10 },

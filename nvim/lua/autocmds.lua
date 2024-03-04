@@ -61,3 +61,12 @@ if cmp_ok and crates_ok then
     end,
   })
 end
+
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+  callback = function()
+    vim.cmd("set foldmethod=expr")
+    vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+    vim.cmd("set nofoldenable ")
+    vim.cmd("normal zR")
+  end,
+})

@@ -50,5 +50,5 @@ require("lualine").setup({
 	tabline = {},
 	winbar = {},
 	inactive_winbar = {},
-	extensions = { "lazy", "mason", "neo-tree", "toggleterm" },
+	extensions = { "lazy", "mason", "nvim-tree", "quickfix", "man" },
 })

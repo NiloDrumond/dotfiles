@@ -31,7 +31,23 @@ end
 -- })
 -- lspconfig.bashls.setup({})
 
-local simple_servers = { "bashls", "tsserver", "eslint", "lua_ls" }
+lspconfig.eslint.setup({
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    local normal_leader_mappings = {
+      ["c"] = {
+        ["f"] = { "<cmd>EslintFixAll<CR>", "Eslint fix all" },
+      },
+    }
+    local wk_ok, wk = pcall(require, "which-key")
+    local WK = require("utils").WK
+    if wk_ok then
+      wk.register(normal_leader_mappings, WK.make_opts(WK.Normal, WK.leader, bufnr))
+    end
+  end,
+})
+
+local simple_servers = { "bashls", "tsserver", "lua_ls", "tailwindcss", "jsonls" }
 for _, server in ipairs(simple_servers) do
   lspconfig[server].setup({
     capabilities = capabilities,
