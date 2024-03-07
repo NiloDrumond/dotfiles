@@ -24,6 +24,7 @@ create_symlink neofetch ~/.config/neofetch
 create_symlink mako ~/.config/mako
 create_symlink lf ~/.config/lf
 create_symlink kitty ~/.config/kitty
+create_symlink wlogout ~/.config/wlogout
 
 # Files
 create_symlink ssh/config ~/.ssh/config

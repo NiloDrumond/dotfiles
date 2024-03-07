@@ -61,7 +61,7 @@
   // Power Menu
   "custom/exit": {
     "format": "󰐥",
-    "on-click": "wlogout",
+    "on-click": "~/dotfiles/scripts/logoutlaunch.sh",
     "tooltip": false,
   },
   "tray": {
