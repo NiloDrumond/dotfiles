@@ -2,6 +2,16 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
     layout_config = {
       prompt_position = "top",
     },
@@ -28,8 +38,8 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 
 -- Custom pickers
-local previewers = require('telescope.previewers')
-local builtin    = require('telescope.builtin')
+local previewers = require("telescope.previewers")
+local builtin = require("telescope.builtin")
 
 local M = { pickers = {} }
 
@@ -44,22 +54,29 @@ M.pickers.grep = function()
   require("telescope.builtin").live_grep()
 end
 
-
 -- Git pickers
 
-
-local delta_bcommits = previewers.new_termopen_previewer {
+local delta_bcommits = previewers.new_termopen_previewer({
   get_command = function(entry)
-    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--',
-      entry.current_file }
-  end
-}
+    return {
+      "git",
+      "-c",
+      "core.pager=delta",
+      "-c",
+      "delta.side-by-side=false",
+      "diff",
+      entry.value .. "^!",
+      "--",
+      entry.current_file,
+    }
+  end,
+})
 
-local delta = previewers.new_termopen_previewer {
+local delta = previewers.new_termopen_previewer({
   get_command = function(entry)
-    return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
-  end
-}
+    return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.value .. "^!" }
+  end,
+})
 
 M.pickers.git_commits = function(opts)
   opts = opts or {}

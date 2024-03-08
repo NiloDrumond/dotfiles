@@ -289,6 +289,9 @@ local normal_leader_mappings = {
       end,
       "Find file",
     },
+    ["r"] = {
+      "<cmd>Telescope resume<CR>", "Resume Telescope"
+    }
   },
   ["/"] = {
     name = "Neovim",

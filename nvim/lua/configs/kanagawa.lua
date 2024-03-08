@@ -60,6 +60,7 @@ require("kanagawa").setup({
       PmenuThumb = { bg = theme.ui.bg_p2 },
 
       ArrowIcon = { fg = palette.peachRed, bg = "NONE" },
+      LeapLabelPrimary = { bg = palette.peachRed, fg = palette.sumiInk2}
     }
   end,
   theme = "wave", -- Load "wave" theme when 'background' option is not set
