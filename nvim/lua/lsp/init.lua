@@ -47,7 +47,7 @@ lspconfig.eslint.setup({
   end,
 })
 
-local simple_servers = { "bashls", "tsserver", "lua_ls", "tailwindcss", "jsonls" }
+local simple_servers = { "bashls", "tsserver", "lua_ls", "tailwindcss", "jsonls", "taplo" }
 for _, server in ipairs(simple_servers) do
   lspconfig[server].setup({
     capabilities = capabilities,

@@ -70,3 +70,21 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
     vim.cmd("normal zR")
   end,
 })
+
+-- Add "q" keybind to close QuickFix
+
+local ok, wk = pcall(require, "which-key")
+
+if ok then
+  local WK = require("utils").WK
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function()
+      local mappings = {
+        ["q"] = { ":cclose<CR>", "Close" },
+      }
+
+      wk.register(mappings, WK.make_opts(WK.Normal, ""))
+    end,
+  })
+end

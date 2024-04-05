@@ -1,4 +1,10 @@
 require("lazy").setup({
+  {
+    "dmmulroy/tsc.nvim",
+    config = function()
+      require("tsc").setup()
+    end,
+  },
   -- NOTE: waiting for 0.10
   -- {
   --     'Bekaboo/dropbar.nvim',
@@ -14,6 +20,9 @@ require("lazy").setup({
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
+    },
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
@@ -51,10 +60,11 @@ require("lazy").setup({
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = function()
-      require("leap").add_default_mappings()
-      require("leap").opts.special_keys.prev_target = "<s-cr>"
-      require("leap").opts.special_keys.prev_group = "<s-cr>"
-      require("leap.user").set_repeat_keys("<cr>", "<s-cr>")
+      vim.keymap.set({ "n", "x", "o" }, "-", "<Plug>(leap-forward)")
+      vim.keymap.set({ "n", "x", "o" }, "_", "<Plug>(leap-backward)")
+      -- require("leap").opts.special_keys.prev_target = "<s-cr>"
+      -- require("leap").opts.special_keys.prev_group = "<s-cr>"
+      -- require("leap.user").set_repeat_keys("<cr>", "<s-cr>")
     end,
   },
   { "akinsho/git-conflict.nvim",      version = "*", config = true },

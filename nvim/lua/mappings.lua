@@ -114,7 +114,7 @@ if ls_ok then
 end
 
 local normal_mappings = {
-  -- ["<Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
+  ["<C-Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
   ["<S-Enter>"] = { "<cmd>call append(line('.') -1, '')<CR>", "Add line above" },
   ["<F1>"] = { "", "which_key_ignore" },
   ["<F8>"] = { "<cmd>TagbarToggle<CR>", "Tagbar" },
@@ -137,6 +137,14 @@ local normal_mappings = {
     "See references",
   },
 
+  ["]c"] = {
+    "<cmd>Gitsigns next_hunk<CR>",
+    "Next git hunk",
+  },
+  ["[c"] = {
+    "<cmd>Gitsigns prev_hunk<CR>",
+    "Previous git hunk",
+  },
   ["[g"] = {
     function()
       vim.diagnostic.goto_prev({ float = { border = "rounded", max_width = 100 } })
@@ -290,8 +298,9 @@ local normal_leader_mappings = {
       "Find file",
     },
     ["r"] = {
-      "<cmd>Telescope resume<CR>", "Resume Telescope"
-    }
+      "<cmd>Telescope resume<CR>",
+      "Resume Telescope",
+    },
   },
   ["/"] = {
     name = "Neovim",
@@ -315,6 +324,16 @@ wk.register(visual_mappings, visual_opts)
 local visual_leader_mappings = {
   ["p"] = { '"+p', "Paste(p) from clipboard" },
   ["P"] = { '"+P', "Paste(P) from clipboard" },
+  ["s"] = { ":s/\\%V", "Replace inside selection" },
+  ["c"] = {
+    name = "LSP",
+    ["a"] = {
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "Code action",
+    },
+  },
 }
 
 wk.register(visual_leader_mappings, visual_leader_opts)
