@@ -1,20 +1,46 @@
 require("lazy").setup({
   {
+    "gbprod/yanky.nvim",
+    config = function()
+      require("configs.yanky")
+    end,
+  },
+  {
+    "yujinyuz/gitpad.nvim",
+    config = function()
+      require("gitpad").setup({
+        dir = "~/notes",
+        default_text = "",
+      })
+    end,
+  },
+  { "tpope/vim-abolish" },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("lsp.tstools")
+    end,
+  },
+  {
     "dmmulroy/tsc.nvim",
     config = function()
       require("tsc").setup()
     end,
   },
-  -- NOTE: waiting for 0.10
-  -- {
-  --     'Bekaboo/dropbar.nvim',
-  --     -- optional, but required for fuzzy finder support
-  --     dependencies = {
-  --       'nvim-telescope/telescope-fzf-native.nvim'
-  --     }
-  --   },
+  {
+    "Bekaboo/dropbar.nvim",
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+    },
+  },
   {
     "preservim/tagbar",
+    config = function()
+      vim.g.tagbar_sort = 0
+      vim.g.tagbar_compact = 2
+    end,
   },
   {
     "kylechui/nvim-surround",
@@ -60,14 +86,14 @@ require("lazy").setup({
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = function()
-      vim.keymap.set({ "n", "x", "o" }, "-", "<Plug>(leap-forward)")
-      vim.keymap.set({ "n", "x", "o" }, "_", "<Plug>(leap-backward)")
+      vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+      vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
       -- require("leap").opts.special_keys.prev_target = "<s-cr>"
       -- require("leap").opts.special_keys.prev_group = "<s-cr>"
       -- require("leap.user").set_repeat_keys("<cr>", "<s-cr>")
     end,
   },
-  { "akinsho/git-conflict.nvim",      version = "*", config = true },
+  { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
     "saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },
@@ -137,6 +163,13 @@ require("lazy").setup({
     branch = "0.1.x",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
+      {
+
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        -- This will not install any breaking changes.
+        -- For major updates, this must be adjusted manually.
+        version = "^1.0.0",
+      },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -297,9 +330,6 @@ require("lazy").setup({
     --   vim.o.timeoutlen = 300
     -- end,
     config = function()
-      local actions = require("which-key.plugins.registers").actions
-      table.insert(actions, { trigger = "<C-p>", mode = "c" })
-      table.insert(actions, { trigger = "<C-p>", mode = "i" })
       require("mappings")
     end,
   },

@@ -20,14 +20,12 @@ if settings.kitty_tab_title then
   vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
       local directory = vim.fn.substitute(vim.fn.getcwd(), "^.*/", "", "")
-      -- TODO 0.10: change to vim.system
-      vim.fn.system("kitty @ set-tab-title " .. "nvim: " .. directory)
+      vim.system("kitty @ set-tab-title " .. "nvim: " .. directory)
     end,
   })
 
   vim.api.nvim_create_autocmd("VimLeave", {
     callback = function()
-      -- TODO 0.10: change to vim.system
       -- https://github.com/neovim/neovim/issues/21856#issuecomment-1514723887
       vim.fn.jobstart("kitty @ set-tab-title", { detach = true })
     end,
@@ -73,18 +71,13 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
 
 -- Add "q" keybind to close QuickFix
 
-local ok, wk = pcall(require, "which-key")
+local wk_ok, wk = pcall(require, "which-key")
 
-if ok then
-  local WK = require("utils").WK
+if wk_ok then
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",
     callback = function()
-      local mappings = {
-        ["q"] = { ":cclose<CR>", "Close" },
-      }
-
-      wk.register(mappings, WK.make_opts(WK.Normal, ""))
+      wk.add({ mode = "n", { "q", ":cclose<CR>", desc = "Close" } })
     end,
   })
 end

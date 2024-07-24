@@ -1,6 +1,23 @@
 local actions = require("telescope.actions")
+local lga_actions = require("telescope-live-grep-args.actions")
 
 require("telescope").setup({
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+      -- define mappings, e.g.
+      mappings = {      -- extend mappings
+        i = {
+          ["<C-k>"] = lga_actions.quote_prompt(),
+          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        },
+      },
+      -- ... also accepts theme settings, for example:
+      -- theme = "dropdown", -- use dropdown theme
+      -- theme = { }, -- use own theme spec
+      -- layout_config = { mirror=true }, -- mirror preview pane
+    },
+  },
   defaults = {
     vimgrep_arguments = {
       "rg",
@@ -18,6 +35,8 @@ require("telescope").setup({
     sorting_strategy = "ascending",
     mappings = {
       i = {
+        ["<C-d>"] = actions.preview_scrolling_down,
+        ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-x>"] = false,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
@@ -28,6 +47,8 @@ require("telescope").setup({
         ["<ESC>"] = actions.close,
       },
       n = {
+        ["<C-d>"] = actions.preview_scrolling_down,
+        ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
       },
@@ -36,6 +57,7 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("live_grep_args")
 
 -- Custom pickers
 local previewers = require("telescope.previewers")
@@ -51,7 +73,7 @@ M.pickers.fd = function(state)
 end
 
 M.pickers.grep = function()
-  require("telescope.builtin").live_grep()
+  require("telescope").extensions.live_grep_args.live_grep_args()
 end
 
 -- Git pickers

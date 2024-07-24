@@ -59,7 +59,7 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     }),
     -- C-b (back) C-f (forward) for snippet placeholder navigation.
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -83,7 +83,13 @@ cmp.setup({
   },
   sources = {
     { name = "npm",                    keyword_length = 4 },
-    { name = "nvim_lsp",               priority = 10 },
+    {
+      name = "nvim_lsp",
+      priority = 10,
+      entry_filter = function(entry, ctx)
+        return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+      end,
+    },
     { name = "path" },
     { name = "nvim_lsp_signature_help" },
     { name = "luasnip" },

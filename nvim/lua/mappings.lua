@@ -1,346 +1,327 @@
 local wk = require("which-key")
 
-wk.setup({
-  triggers_nowait = { "<C-p>" },
-})
-
--- Configs
-
-local normal_opts = {
-  mode = "n",
-  prefix = "",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
-local normal_leader_opts = {
-  mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
-local visual_opts = {
-  mode = "v",
-  prefix = "",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
-local operator_opts = {
-  mode = "o",
-  prefix = "",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
-local insert_opts = {
-  mode = "i",
-  prefix = "",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
-local visual_leader_opts = {
-  mode = "v",
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = false,
-}
-
--- Mappings
+wk.setup({})
 
 -- Neowords
 local ok, neowords = pcall(require, "configs.neowords")
 if ok then
   local subword_hops = neowords.hops
-  local subword_movement_mappings = {
-    ["w"] = { subword_hops.forward_start, "Next word" },
-    ["e"] = { subword_hops.forward_end, "Next end of word" },
-    ["b"] = { subword_hops.backward_start, "Previous word" },
-    ["ge"] = { subword_hops.backward_end, "Previous end of word" },
-  }
-
-  wk.register(subword_movement_mappings, normal_opts)
-  wk.register(subword_movement_mappings, visual_opts)
-  wk.register(subword_movement_mappings, operator_opts)
+  wk.add({
+    mode = { "n", "v", "o" },
+    { "w",  subword_hops.forward_start,  desc = "Next word" },
+    { "e",  subword_hops.forward_end,    desc = "Next end of word" },
+    { "b",  subword_hops.backward_start, desc = "Previous word" },
+    { "ge", subword_hops.backward_end,   desc = "Previous end of word" },
+  })
 end
 
 -- LuaSnip
 local ls_ok, ls = pcall(require, "luasnip")
 if ls_ok then
-  local ls_mappings = {
-    ["<C-h>"] = {
+  wk.add({
+    mode = "i",
+    {
+      "<C-h>",
       function()
         ls.jump(-1)
       end,
-      "LuaSnip: jump backward",
+      desc = "LuaSnip: jump backward",
     },
-    ["<C-l>"] = {
+    {
+      "<C-l>",
       function()
         ls.jump(1)
       end,
-      "LuaSnip: jump forward",
+      desc = "LuaSnip: jump forward",
     },
-    ["<C-k>"] = {
+    {
+      "<C-h>",
       function()
         ls.expand()
       end,
-      "LuaSnip: expand",
+      desc = "LuaSnip: expand",
     },
-    ["<C-j>"] = {
+    {
+      "<C-h>",
       function()
         if ls.choice_active() then
           ls.change_choice(1)
         end
       end,
-      "LuaSnip: change active choice",
+      desc = "LuaSnip: change active choice",
     },
-  }
-
-  wk.register(ls_mappings, insert_opts)
+  })
 end
 
-local normal_mappings = {
-  ["<C-Enter>"] = { "<cmd>call append(line('.'), '')<CR>", "Add line below" },
-  ["<S-Enter>"] = { "<cmd>call append(line('.') -1, '')<CR>", "Add line above" },
-  ["<F1>"] = { "", "which_key_ignore" },
-  ["<F8>"] = { "<cmd>TagbarToggle<CR>", "Tagbar" },
-  ["gd"] = {
+-- Normal mappings
+wk.add({
+  mode = "n",
+  { "<C-Enter>", "<cmd>call append(line('.'), '')<cr>",   desc = "Add line below" },
+  { "<S-Enter>", "<cmd>call append(line('.')-1, '')<cr>", desc = "Add line above" },
+  { "<F1>",      "",                                      hidden = true },
+  { "<F8>",      "<cmd>TagbarToggle<CR>",                 desc = "Tagbar" },
+  {
+    "gd",
     function()
       vim.lsp.buf.definition()
     end,
-    "Go to definition",
+    desc = "Go to definition",
   },
-  ["gD"] = {
-    function()
-      vim.lsp.buf.declaration()
-    end,
-    "Go to declaration",
-  },
-  ["gr"] = {
+  {
+    "gr",
     function()
       vim.lsp.buf.references({ includeDeclaration = false })
     end,
-    "See references",
+    desc = "Go to references",
   },
-
-  ["]c"] = {
-    "<cmd>Gitsigns next_hunk<CR>",
-    "Next git hunk",
+  {
+    "gD",
+    function()
+      vim.lsp.buf.declaration()
+    end,
+    desc = "Go to declaration",
   },
-  ["[c"] = {
-    "<cmd>Gitsigns prev_hunk<CR>",
-    "Previous git hunk",
-  },
-  ["[g"] = {
+  { "]c", "<cmd>Gitsigns next_hunk<CR>", desc = "Next git hunk" },
+  { "[c", "<cmd>Gitsigns prev_hunk<CR>", desc = "Prev git hunk" },
+  {
+    "[g",
     function()
       vim.diagnostic.goto_prev({ float = { border = "rounded", max_width = 100 } })
     end,
-    "Prev diagnostic",
+    desc = "Prev diagnostic",
   },
-  ["]g"] = {
+  {
+    "]g",
     function()
       vim.diagnostic.goto_next({ float = { border = "rounded", max_width = 100 } })
     end,
-    "Next diagnostic",
+    desc = "Next diagnostic",
   },
-  ["gl"] = {
+  {
+    "gl",
     function()
       vim.diagnostic.open_float({ border = "rounded", max_width = 100 })
     end,
-    "Diagnostics",
+    desc = "Diagnostics",
   },
-  ["K"] = {
+  {
+    "K",
     function()
       vim.lsp.buf.hover()
     end,
-    "LSP Hover",
+    desc = "LSP Hover",
   },
-  ["M"] = {
+  {
+    "M",
     function()
       vim.lsp.buf.signature_help()
     end,
-    "Signature help",
+    desc = "Signature help",
   },
-  ["gi"] = {
+  {
+    "gi",
     function()
       vim.lsp.buf.implementations()
     end,
-    "Go to implementation",
+    desc = "Go to implementation",
   },
-  ["<BS>"] = {
+  {
+    "<BS>",
     function()
       vim.cmd("noh")
       vim.api.nvim_input("<ESC>")
     end,
-    "Clear highlights",
+    desc = "Clear highlights",
   },
-  ["x"] = { '"_x', "which_key_ignore" },
-  ["yA"] = { "ggVGy", "Yank buffer" },
-  ["<C-s>"] = { ":w<CR>", "Save file" },
-  ["<C-h>"] = { "<C-w>h", "Move to left window" },
-  ["<C-j>"] = { "<C-w>j", "Move to bottom window" },
-  ["<C-k>"] = { "<C-w>k", "Move to top window" },
-  ["<C-l>"] = { "<C-w>l", "Move to right window" },
-}
+  { "yA",    "ggVGy",  desc = "Yank buffer" },
+  { "<C-s>", ":w<CR>", desc = "Save file" },
+  { "<C-h>", "<C-w>h", desc = "Move to left window" },
+  { "<C-j>", "<C-w>j", desc = "Move to bottom window" },
+  { "<C-k>", "<C-w>k", desc = "Move to top window" },
+  { "<C-l>", "<C-w>l", desc = "Move to right window" },
+})
 
-wk.register(normal_mappings, normal_opts)
-
-local normal_leader_mappings = {
-  ["g"] = {
-    name = "Git",
-    ["g"] = { "<cmd>LazyGit<CR>", "Lazygit" },
-    ["b"] = { "<cmd>Gitsigns blame_line<CR>", "Blame line" },
-    ["s"] = { "<cmd>Telescope git_status<CR>", "Git status" },
-    ["l"] = {
-      name = "Log",
-      ["A"] = {
-        function()
-          require("configs.telescope").pickers.git_commits()
-        end,
-        "commits (Telescope)",
-      },
-      ["a"] = { "<cmd>LazyGitFilter<CR>", "commits" },
-      ["C"] = {
-        function()
-          require("configs.telescope").pickers.git_buffer_commits()
-        end,
-        "buffer commits (Telescope)",
-      },
-      ["c"] = { "<cmd>LazyGitFilterCurrentFile<CR>", "buffer commits" },
-    },
+wk.add({
+  mode = "n",
+  { "<leader>x", ":q<CR>",       desc = "Close" },
+  { "<leader>n", group = "Notes" },
+  {
+    "<leader>pn",
+    function()
+      require("gitpad").toggle_gitpad({ title = "Project notes" })
+    end,
+    desc = "Project notes",
   },
-  ["b"] = { "<cmd>Telescope buffers<CR>", "Buffers" },
-  ["<leader>"] = {
+  {
+    "<leader>pd",
+    function()
+      local date_filename = "daily-" .. os.date("%Y-%m-%d.md")
+      require("gitpad").toggle_gitpad({ filename = date_filename, title = "Daily notes" })
+    end,
+    desc = "Daily notes",
+  },
+  { "<leader>b",  "<cmd>Telescope buffers<CR>",      desc = "Buffer" },
+  {
+    "<leader><leader>",
     function()
       vim.lsp.buf.format({ async = true })
     end,
-    "Format",
+    desc = "Format",
   },
-  ["y"] = { ":let @+=getreg()<CR>", 'Register " to clipboard' },
-  ["p"] = { '"+p', "Paste(p) from clipboard" },
-  ["P"] = { 'o<ESC>"+p', "Paste(P) from clipboard" },
-  ["e"] = {
-    "<cmd>NvimTreeToggle<cr>",
-    "Toggle tree",
+  { "<leader>Y",  ":let @+=getreg()<CR>",            desc = 'Register " to clipboard' },
+  { "<leader>y",  "<cmd>Telescope yank_history<CR>", desc = "Yank history" },
+  { "<leader>p",  '"+p',                             desc = "Paste(p) from clipboard" },
+  { "<leader>P",  'o<ESC>"+p',                       desc = "Paste(P) from clipboard" },
+  { "<leader>e",  "<cmd>NvimTreeToggle<cr>",         desc = "Toggle tree" },
+  { "<leader>a",  group = "Actions" },
+  { "<leader>az", "<cmd>ZenMode<cr>",                desc = "Zen mode" },
+  { "<leader>ae", "<cmd>ene<cr>",                    desc = "New buffer" },
+  { "<leader>af", "<cmd>NvimTree Reveal<cr>",        desc = "Tree: Find file" },
+  { "<leader>ar", "<cmd>set norelativenumber!<CR>",  desc = "Toggle relative numbers" },
+  { "<leader>f",  group = "Find" },
+  {
+    "<leader>fc",
+    function()
+      local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+      live_grep_args_shortcuts.grep_word_under_cursor()
+    end,
+    desc = "Grep word under cursor",
   },
-  ["c"] = {
-    name = "LSP",
-    ["a"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "Code action",
-    },
-    ["d"] = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "Type definition",
-    },
-    ["r"] = {
-      function()
-        vim.lsp.buf.rename()
-      end,
-      "Rename",
-    },
-    ["f"] = {
-      function()
-        vim.lsp.buf.format({ async = true })
-      end,
-      "Format",
-    },
+  {
+    "<leader>fw",
+    function()
+      require("configs.telescope").pickers.grep()
+    end,
+    desc = "Find word",
   },
-  ["a"] = {
-    name = "Actions",
-    ["z"] = {
-      "<cmd>ZenMode<CR>",
-      "Zen mode",
-    },
-    ["n"] = {
-      "ene",
-      "New buffer",
-    },
-    ["f"] = {
-      "<cmd>Neotree reveal<cr>",
-      "Tree: Find file",
-    },
-    ["r"] = {
-      "<cmd>set norelativenumber!<CR>",
-      "Toggle relative numbers",
-    },
+  {
+    "<leader>ff",
+    function()
+      require("configs.telescope").pickers.fd()
+    end,
+    desc = "Find file",
   },
-  ["f"] = {
-    name = "Find",
-    ["w"] = {
-      function()
-        require("configs.telescope").pickers.grep()
-      end,
-      "Find word",
-    },
-    ["f"] = {
-      function()
-        require("configs.telescope").pickers.fd()
-      end,
-      "Find file",
-    },
-    ["r"] = {
-      "<cmd>Telescope resume<CR>",
-      "Resume Telescope",
-    },
+  {
+    "<leader>fr",
+    "<cmd>Telescope resume<CR>",
+    desc = "Resume Telescope",
   },
-  ["/"] = {
-    name = "Neovim",
-    ["/"] = { "<cmd>Alpha<CR>", "Dashboard" },
-    q = { "<cmd>qa<CR>", "Quit" },
+  { "<leader>/",  group = "Neovim" },
+  { "<leader>//", "<cmd>Alpha<CR>",     desc = "Dashboard" },
+  { "<leader>/u", "<cmd>Lazy sync<CR>", desc = "Update Lazy" },
+  { "<leader>/q", "<cmd>qa<CR>",        desc = "Quit" },
+})
+
+-- Lsp Normal Mappings
+
+wk.add({
+  mode = "n",
+  { "<leader>c", group = "LSP" },
+  {
+    "<leader>ca",
+    function()
+      vim.lsp.buf.code_action()
+    end,
+    desc = "Code action",
   },
-}
-
-wk.register(normal_leader_mappings, normal_leader_opts)
-
-local visual_mappings = {
-  ["x"] = { '"_x', "which_key_ignore" },
-  ["p"] = { '"_dp', "which_key_ignore" },
-  ["<C-s>"] = { "<ESC> :w<CR>", "Save file" },
-  ["<S-j>"] = { ":move '>+1<CR>gv-gv", "Move line down" },
-  ["<S-k>"] = { ":move '<-2<CR>gv-gv", "Move line down" },
-}
-
-wk.register(visual_mappings, visual_opts)
-
-local visual_leader_mappings = {
-  ["p"] = { '"+p', "Paste(p) from clipboard" },
-  ["P"] = { '"+P', "Paste(P) from clipboard" },
-  ["s"] = { ":s/\\%V", "Replace inside selection" },
-  ["c"] = {
-    name = "LSP",
-    ["a"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "Code action",
-    },
+  {
+    "<leader>cr",
+    function()
+      vim.lsp.buf.rename()
+    end,
+    desc = "Rename",
   },
-}
+  {
+    "<leader>cf",
+    function()
+      vim.lsp.buf.format({ async = true })
+    end,
+    desc = "Format",
+  },
+})
 
-wk.register(visual_leader_mappings, visual_leader_opts)
+-- Git Normal Mappings
 
-local insert_mappings = {
-  ["<C-s>"] = { "<ESC> :w<CR>", "Save file" },
-  ["<C-p>"] = { "<C-r>", "Paste" },
-}
+wk.add({
+  mode = "n",
+  { "<leader>g",  group = "Git" },
+  { "<leader>gg", "<cmd>LazyGit<CR>",              desc = "Lazygit" },
+  { "<leader>gb", "<cmd>Gitsigns blame_line<CR>",  desc = "Blame line" },
+  { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Git status" },
+  { "<leader>gl", group = "Log" },
+  {
+    "<leader>glA",
+    function()
+      require("configs.telescope").pickers.git_commits()
+    end,
+    desc = "commits (Telescope)",
+  },
+  {
+    "<leader>glC",
+    function()
+      require("configs.telescope").pickers.git_buffer_commits()
+    end,
+    desc = "buffer commits (Telescope)",
+  },
+  {
+    "<leader>gla",
+    "<cmd>LazyGitFilter<CR>",
+    desc = "commits (Lazygit)",
+  },
+  {
+    "<leader>glc",
+    "<cmd>LazyGitFilterCurrentFile<CR>",
+    desc = "buffer commits (Lazygit)",
+  },
+})
 
-wk.register(insert_mappings, insert_opts)
+-- Visual and Normal mappings
+wk.add({
+  mode = { "n", "v" },
+  { "x",     '"_x',    hidden = true },
+  { "<C-s>", ":w<CR>", desc = "Save file" },
+})
+
+-- Visual mappings
+wk.add({
+  mode = "v",
+  { "p",     '"_dp',                hidden = true },
+  { "<S-j>", ":move '>+1<CR>gv-gv", desc = "Move line down" },
+  { "<S-k>", ":move '<-2<CR>gv-gv", desc = "Move line up" },
+})
+
+wk.add({
+  mode = "v",
+  { "<leader>s", ":Subvert/", desc = "Subvert inside selection" },
+  { "<leader>S", ":s/\\%V",   desc = "Replace inside selection" },
+  {
+    "<leader>p",
+    '"+p',
+    desc = "Paste(p) from clipboard",
+  },
+  {
+    "<leader>P",
+    '"+P',
+    desc = "Paste(P) from clipboard",
+  },
+  {
+    "<leader>c",
+    function()
+      vim.lsp.buf.code_action()
+    end,
+    desc = "Code action",
+  },
+})
+
+-- local insert_mappings = {
+--   ["<C-s>"] = { "<ESC> :w<CR>", "Save file" },
+--   ["<C-p>"] = { "<C-r>", "Paste" },
+-- }
+
+-- Insert mappings
+wk.add({
+  mode = "i",
+  {
+    { "<C-s>", "<ESC> :w<cr>", desc = "Save file" },
+  },
+})
