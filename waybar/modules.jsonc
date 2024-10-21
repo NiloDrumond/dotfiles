@@ -1,7 +1,7 @@
 {
   "hyprland/workspaces": {
     "on-click": "activate",
-    "active-only": false,
+    "active-only": true,
     "all-outputs": true,
     "format": "{}",
     "format-icons": {
@@ -47,7 +47,7 @@
       "updated": "󰗠 ",
     },
     "exec-if": "which waybar-module-pacman-updates",
-    "exec": "waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates"
   },
   // Updates Count
   // "custom/updates": {

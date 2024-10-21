@@ -70,11 +70,12 @@ require("lazy").setup({
   },
   {
     "ggandor/flit.nvim",
+    dependencies = { "tpope/vim-repeat" },
     config = function()
       require("flit").setup({
         keys = { f = "f", F = "F", t = "t", T = "T" },
         -- A string like "nv", "nvo", "o", etc.
-        labeled_modes = "v",
+        labeled_modes = "nv",
         multiline = true,
         -- Like `leap`s similar argument (call-specific overrides).
         -- E.g.: opts = { equivalence_classes = {} }
@@ -331,6 +332,14 @@ require("lazy").setup({
     -- end,
     config = function()
       require("mappings")
+    end,
+  },
+  {
+    "gorbit99/codewindow.nvim",
+    config = function()
+      local codewindow = require("codewindow")
+      codewindow.setup({ z_index = 50, auto_enable = false })
+      codewindow.apply_default_keybinds()
     end,
   },
 })

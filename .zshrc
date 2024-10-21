@@ -16,7 +16,7 @@ plugins=(
     zsh-nvm
     zsh-interactive-cd
     # Completions - Start
-    bun
+    # bun
     zsh-better-npm-completion
     # Completions - End
     zsh-autosuggestions
@@ -61,7 +61,7 @@ alias pac-installed="pacman -Qqe | fzf --preview 'pacman -Qil {}' --layout=rever
 alias pac-installed-all="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 alias pac-list-unused="pacman -Qdt"
 alias pac-remove-unused="pacman -Rsn $(pacman -Qdtq)"
-alias dot="cd ~/dotfiles && nvim"
+# alias dot="cd ~/dotfiles && nvim"
 alias doti="~/dotfiles/install.sh"
 alias archwiki="firefox /usr/share/doc/arch-wiki/html/en/Table_of_contents.html"
 # alias rvim="XDG_CONFIG_HOME=~/.config/nvim.rust XDG_DATA_HOME=~/.local/share/nvim.rust nvim -u .config/nvim.rust/init.lua"

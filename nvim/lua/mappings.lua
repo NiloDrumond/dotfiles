@@ -84,18 +84,52 @@ wk.add({
   { "]c", "<cmd>Gitsigns next_hunk<CR>", desc = "Next git hunk" },
   { "[c", "<cmd>Gitsigns prev_hunk<CR>", desc = "Prev git hunk" },
   {
+    "[w",
+    function()
+      vim.diagnostic.goto_prev({
+        float = { border = "rounded", max_width = 100 },
+        severity = {
+          vim.diagnostic.severity.WARN,
+          vim.diagnostic.severity.INFO,
+          vim.diagnostic.severity.HINT,
+        },
+      })
+    end,
+    desc = "Prev non-error diagnostic",
+  },
+  {
+    "]w",
+    function()
+      vim.diagnostic.goto_next({
+        float = { border = "rounded", max_width = 100 },
+        severity = {
+          vim.diagnostic.severity.WARN,
+          vim.diagnostic.severity.INFO,
+          vim.diagnostic.severity.HINT,
+        },
+      })
+    end,
+    desc = "Next non-error diagnostic",
+  },
+  {
     "[g",
     function()
-      vim.diagnostic.goto_prev({ float = { border = "rounded", max_width = 100 } })
+      vim.diagnostic.goto_prev({
+        float = { border = "rounded", max_width = 100 },
+        severity = vim.diagnostic.severity.ERROR,
+      })
     end,
-    desc = "Prev diagnostic",
+    desc = "Prev error",
   },
   {
     "]g",
     function()
-      vim.diagnostic.goto_next({ float = { border = "rounded", max_width = 100 } })
+      vim.diagnostic.goto_next({
+        float = { border = "rounded", max_width = 100 },
+        severity = vim.diagnostic.severity.ERROR,
+      })
     end,
-    desc = "Next diagnostic",
+    desc = "Next error",
   },
   {
     "gl",
@@ -141,9 +175,14 @@ wk.add({
   { "<C-l>", "<C-w>l", desc = "Move to right window" },
 })
 
+-- Leader Mappings
+
 wk.add({
   mode = "n",
-  { "<leader>x", ":q<CR>",       desc = "Close" },
+
+  { "<leader>0", "<cmd>vertical resize -5<CR>", desc = "Resize -5" },
+  { "<leader>-", "<cmd>vertical resize +5<CR>", desc = "Resize +5" },
+  { "<leader>x", ":q<CR>",                      desc = "Close" },
   { "<leader>n", group = "Notes" },
   {
     "<leader>pn",
@@ -172,11 +211,11 @@ wk.add({
   { "<leader>y",  "<cmd>Telescope yank_history<CR>", desc = "Yank history" },
   { "<leader>p",  '"+p',                             desc = "Paste(p) from clipboard" },
   { "<leader>P",  'o<ESC>"+p',                       desc = "Paste(P) from clipboard" },
-  { "<leader>e",  "<cmd>NvimTreeToggle<cr>",         desc = "Toggle tree" },
+  { "<leader>af", "<cmd>NvimTreeToggle<cr>",         desc = "Toggle tree" },
   { "<leader>a",  group = "Actions" },
   { "<leader>az", "<cmd>ZenMode<cr>",                desc = "Zen mode" },
   { "<leader>ae", "<cmd>ene<cr>",                    desc = "New buffer" },
-  { "<leader>af", "<cmd>NvimTree Reveal<cr>",        desc = "Tree: Find file" },
+  { "<leader>e",  "<cmd>NvimTreeFindFile<CR>",       desc = "Tree: Find file" },
   { "<leader>ar", "<cmd>set norelativenumber!<CR>",  desc = "Toggle relative numbers" },
   { "<leader>f",  group = "Find" },
   {

@@ -18,6 +18,11 @@ local source_mapping = {
 }
 
 cmp.setup({
+  preselect = "None",
+  -- window = {
+  --   completion = cmp.config.window.bordered(),
+  --   documentation = cmp.config.window.bordered(),
+  -- },
   formatting = {
     format = function(entry, vim_item)
       vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })

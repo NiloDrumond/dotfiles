@@ -27,6 +27,7 @@
     "custom/updates",
     "tray",
     "hyprland/language",
+    "keyboard-state",
     "battery",
     "pulseaudio",
     "network",

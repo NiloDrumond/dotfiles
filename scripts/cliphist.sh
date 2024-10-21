@@ -20,4 +20,6 @@ case $1 in
 
     *) cliphist list | rofi -dmenu -replace -config ~/dotfiles/rofi/config-cliphist.rasi | cliphist decode | wl-copy
        ;;
+    # *) cliphist list | rofi -dmenu -replace -config ~/dotfiles/rofi/config-cliphist.rasi | cliphist decode | wl-copy
+    #    ;;
 esac
