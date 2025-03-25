@@ -1,4 +1,36 @@
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
+  return
+end
+
+local function get_workspace_root()
+  local cwd = vim.fn.getcwd()
+  local root_files = { "pnpm-workspace.yaml", "package.json", "tsconfig.json", ".git" }
+  for _, file in ipairs(root_files) do
+    if vim.fn.filereadable(cwd .. "/" .. file) == 1 then
+      return cwd
+    end
+  end
+  return nil
+end
+
 require("typescript-tools").setup({
+  root_dir = get_workspace_root,
+  tsserver = {
+    sourceMaps = true,
+    sourceMapPathOverrides = {
+      ["/turbopack/[project]/*"] = "${webRoot}/*"
+    }
+  },
+  -- root_dir = function(fname)
+  --   local root_files = {
+  --     "pnpm-workspace.yaml", -- Ensures it works with pnpm monorepos
+  --     "package.json",
+  --     "tsconfig.json",
+  --     ".git",
+  --   }
+  --   return lspconfig.util.root_pattern(unpack(root_files))(fname)
+  -- end,
   on_attach = function(client, bufnr)
     local wk_ok, wk = pcall(require, "which-key")
     if wk_ok then

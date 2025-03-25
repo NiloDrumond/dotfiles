@@ -71,13 +71,26 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
 
 -- Add "q" keybind to close QuickFix
 
-local wk_ok, wk = pcall(require, "which-key")
+-- local wk_ok, wk = pcall(require, "which-key")
+--
+-- if wk_ok then
+--   vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "qf",
+--     callback = function()
+--       wk.add({ mode = "n", { "q", ":cclose<CR>", desc = "Close" } })
+--     end,
+--   })
+-- end
+--
 
-if wk_ok then
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "qf",
-    callback = function()
-      wk.add({ mode = "n", { "q", ":cclose<CR>", desc = "Close" } })
-    end,
-  })
-end
+
+
+-- Go format on save
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimports()
+  end,
+  group = format_sync_grp,
+})

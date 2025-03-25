@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
-local luasnip = require("luasnip")
+-- local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 local source_mapping = {
@@ -41,11 +41,11 @@ cmp.setup({
       return vim_item
     end,
   },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     luasnip.lsp_expand(args.body)
+  --   end,
+  -- },
   mapping = {
     ["<Down>"] = {
       i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
@@ -97,7 +97,7 @@ cmp.setup({
     },
     { name = "path" },
     { name = "nvim_lsp_signature_help" },
-    { name = "luasnip" },
+    -- { name = "luasnip" },
   },
 })
 

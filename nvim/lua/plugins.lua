@@ -76,6 +76,7 @@ require("lazy").setup({
         keys = { f = "f", F = "F", t = "t", T = "T" },
         -- A string like "nv", "nvo", "o", etc.
         labeled_modes = "nv",
+        clever_repeat = true,
         multiline = true,
         -- Like `leap`s similar argument (call-specific overrides).
         -- E.g.: opts = { equivalence_classes = {} }
@@ -104,7 +105,7 @@ require("lazy").setup({
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", -- Recommended
+    version = "^5", -- Recommended
     ft = { "rust" },
   },
   {
@@ -153,12 +154,12 @@ require("lazy").setup({
       require("configs.autopair")
     end,
   },
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   version = "v2.*",
+  --   -- install jsregexp (optional!).
+  --   build = "make install_jsregexp",
+  -- },
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
@@ -317,7 +318,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    dependencies = { "windwp/nvim-ts-autotag" },
+    dependencies = { "windwp/nvim-ts-autotag", "HiPhish/rainbow-delimiters.nvim" },
     config = function()
       require("configs.treesitter")
     end,
@@ -341,5 +342,31 @@ require("lazy").setup({
       codewindow.setup({ z_index = 50, auto_enable = false })
       codewindow.apply_default_keybinds()
     end,
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<C-l>",
+          accept_word = "<C-j>",
+          clear_suggestion = "<C-h>",
+        },
+      })
+    end,
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("lsp.go")
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 })

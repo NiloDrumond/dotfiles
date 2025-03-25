@@ -26,7 +26,7 @@ require("telescope").setup({
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case",
+      -- "--smart-case",
       "--hidden",
     },
     layout_config = {
