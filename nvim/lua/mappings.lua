@@ -180,9 +180,11 @@ wk.add({
 wk.add({
   mode = "n",
 
-  { "<leader>0", "<cmd>vertical resize -5<CR>", desc = "Resize -5" },
-  { "<leader>-", "<cmd>vertical resize +5<CR>", desc = "Resize +5" },
-  { "<leader>x", ":q<CR>",                      desc = "Close" },
+  { "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', desc = "Toggle Spectre" },
+  { "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', desc = "Spectre current word" },
+  { "<leader>0", "<cmd>vertical resize -5<CR>",              desc = "Resize -5" },
+  { "<leader>-", "<cmd>vertical resize +5<CR>",              desc = "Resize +5" },
+  { "<leader>x", ":q<CR>",                                   desc = "Close" },
   { "<leader>n", group = "Notes" },
   {
     "<leader>pn",
@@ -329,9 +331,12 @@ wk.add({
   { "<S-k>", ":move '<-2<CR>gv-gv", desc = "Move line up" },
 })
 
+-- Visual leader mappings
+
 wk.add({
   mode = "v",
   { "<leader>s", ":Subvert/", desc = "Subvert inside selection" },
+  { "<leader>sw", '<cmd>lua require("spectre").open_visual()<CR>', desc = "Spectre current word" },
   { "<leader>S", ":s/\\%V",   desc = "Replace inside selection" },
   {
     "<leader>p",

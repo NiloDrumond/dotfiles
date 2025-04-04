@@ -355,6 +355,15 @@ require("lazy").setup({
       })
     end,
   },
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("configs.spectre")
+    end,
+  },
   -- {
   --   "ray-x/go.nvim",
   --   dependencies = { -- optional packages

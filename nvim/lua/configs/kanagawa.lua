@@ -59,6 +59,9 @@ require("kanagawa").setup({
       PmenuSbar = { bg = theme.ui.bg_m1 },
       PmenuThumb = { bg = theme.ui.bg_p2 },
 
+      -- For Spectre
+      DiffChange = { bg = palette.autumnGreen },
+
 
       -- Codewindow
       CodewindowBorder = { fg = theme.ui.float.bg },
