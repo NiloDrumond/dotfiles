@@ -35,6 +35,7 @@ bindkey '^[[B' history-substring-search-down
 
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/go/bin
 export EDITOR="nvim"
 
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -52,6 +53,7 @@ fi
 #  │ Aliases                                                  │
 #  ╰──────────────────────────────────────────────────────────╯
 
+alias fcd='cd "$(rg --files --hidden --no-messages | xargs -n1 dirname | sort -u | fzf)"'
 alias v="nvim"
 alias safev='NVIM_APPNAME=nvchadvim nvim'
 alias rgf="rg --files --hidden | rg"
@@ -95,3 +97,5 @@ if [ -f "$LFCD" ]; then
     source "$LFCD"
     alias lf="lfcd"
 fi
+
+# eval $(keychain --eval --agents ssh id_ed25519)
