@@ -47,12 +47,12 @@ cmp.setup({
   --   end,
   -- },
   mapping = {
-    ["<Down>"] = {
-      i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
-    },
-    ["<Up>"] = {
-      i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
-    },
+    -- ["<Down>"] = {
+    --   i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
+    -- },
+    -- ["<Up>"] = {
+    --   i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
+    -- },
     ["<C-y>"] = {
       i = cmp.mapping.confirm({ select = false }),
     },

@@ -10,6 +10,7 @@ require("telescope").setup({
         i = {
           ["<C-k>"] = lga_actions.quote_prompt(),
           ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+          ["<C-space>"] = lga_actions.to_fuzzy_refine
         },
       },
       -- ... also accepts theme settings, for example:
@@ -26,7 +27,7 @@ require("telescope").setup({
       "--with-filename",
       "--line-number",
       "--column",
-      -- "--smart-case",
+      "--smart-case",
       "--hidden",
     },
     layout_config = {
@@ -65,15 +66,25 @@ local builtin = require("telescope.builtin")
 
 local M = { pickers = {} }
 
-M.pickers.fd = function(state)
-  vim.print(state)
-  require("telescope.builtin").find_files({
-    find_command = { "fd", "-H", "--type", "f", "-E", ".git" },
-  })
+local connections_ok, connections = pcall(require, "remote-sshfs.connections")
+local api_ok, api = pcall(require, "remote-sshfs.api")
+
+M.pickers.fd = function()
+  if api_ok and connections_ok and connections.is_connected() then
+    api.find_files()
+  else
+    require("telescope.builtin").find_files({
+      find_command = { "fd", "-H", "--type", "f", "-E", ".git" },
+    })
+  end
 end
 
 M.pickers.grep = function()
-  require("telescope").extensions.live_grep_args.live_grep_args()
+  if api_ok and connections_ok and connections.is_connected() then
+    api.live_grep()
+  else
+    require("telescope").extensions.live_grep_args.live_grep_args()
+  end
 end
 
 -- Git pickers

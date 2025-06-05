@@ -6,5 +6,5 @@ arrow.setup({
   leader_key = "U",       -- Recommended to be a single key
   separate_save_and_remove = true,
   -- index_keys = "123456789zxcbnmZXVBNM,afghjklAFGHJKLwrtyuiopWRTYUIOP", -- keys mapped to bookmark index, i.e. 1st bookmark will be accessible by 1, and 12th - by c
-  index_keys = "12345zc6789bnmZXVBN,afghjklAFGHJKLwrtyuiopWRTYUIOP", -- keys mapped to bookmark index, i.e. 1st bookmark will be accessible by 1, and 12th - by c
+  index_keys = "12345zc6789bnZVBN,afghjklAFGHJKLwrtyuiopWRTYUIOP", -- keys mapped to bookmark index, i.e. 1st bookmark will be accessible by 1, and 12th - by c
 })

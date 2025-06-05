@@ -86,7 +86,8 @@ wk.add({
   {
     "[w",
     function()
-      vim.diagnostic.goto_prev({
+      vim.diagnostic.jump({
+        count = -1,
         float = { border = "rounded", max_width = 100 },
         severity = {
           vim.diagnostic.severity.WARN,
@@ -100,7 +101,8 @@ wk.add({
   {
     "]w",
     function()
-      vim.diagnostic.goto_next({
+      vim.diagnostic.jump({
+        count = 1,
         float = { border = "rounded", max_width = 100 },
         severity = {
           vim.diagnostic.severity.WARN,
@@ -114,7 +116,8 @@ wk.add({
   {
     "[g",
     function()
-      vim.diagnostic.goto_prev({
+      vim.diagnostic.jump({
+        count = -1,
         float = { border = "rounded", max_width = 100 },
         severity = vim.diagnostic.severity.ERROR,
       })
@@ -124,7 +127,8 @@ wk.add({
   {
     "]g",
     function()
-      vim.diagnostic.goto_next({
+      vim.diagnostic.jump({
+        count = 1,
         float = { border = "rounded", max_width = 100 },
         severity = vim.diagnostic.severity.ERROR,
       })
@@ -155,7 +159,7 @@ wk.add({
   {
     "gi",
     function()
-      vim.lsp.buf.implementations()
+      vim.lsp.buf.implementation()
     end,
     desc = "Go to implementation",
   },
@@ -179,13 +183,12 @@ wk.add({
 
 wk.add({
   mode = "n",
-
-  { "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', desc = "Toggle Spectre" },
+  { "<leader>S",  '<cmd>lua require("spectre").toggle()<CR>',                        desc = "Toggle Spectre" },
   { "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', desc = "Spectre current word" },
-  { "<leader>0", "<cmd>vertical resize -5<CR>",              desc = "Resize -5" },
-  { "<leader>-", "<cmd>vertical resize +5<CR>",              desc = "Resize +5" },
-  { "<leader>x", ":q<CR>",                                   desc = "Close" },
-  { "<leader>n", group = "Notes" },
+  { "<leader>0",  "<cmd>vertical resize -5<CR>",                                     desc = "Resize -5" },
+  { "<leader>-",  "<cmd>vertical resize +5<CR>",                                     desc = "Resize +5" },
+  { "<leader>x",  ":q<CR>",                                                          desc = "Close" },
+  { "<leader>n",  group = "Notes" },
   {
     "<leader>pn",
     function()
@@ -211,8 +214,8 @@ wk.add({
   },
   { "<leader>Y",  ":let @+=getreg()<CR>",            desc = 'Register " to clipboard' },
   { "<leader>y",  "<cmd>Telescope yank_history<CR>", desc = "Yank history" },
-  { "<leader>p",  '"+p',                             desc = "Paste(p) from clipboard" },
-  { "<leader>P",  'o<ESC>"+p',                       desc = "Paste(P) from clipboard" },
+  -- { "<leader>p",  '"+p',                             desc = "Paste(p) from clipboard" },
+  -- { "<leader>P",  'o<ESC>"+p',                       desc = "Paste(P) from clipboard" },
   { "<leader>af", "<cmd>NvimTreeToggle<cr>",         desc = "Toggle tree" },
   { "<leader>a",  group = "Actions" },
   { "<leader>az", "<cmd>ZenMode<cr>",                desc = "Zen mode" },
@@ -252,6 +255,36 @@ wk.add({
   { "<leader>/u", "<cmd>Lazy sync<CR>", desc = "Update Lazy" },
   { "<leader>/q", "<cmd>qa<CR>",        desc = "Quit" },
 })
+
+-- RemoteSSHFS
+
+local api_ok, api = pcall(require, "remote-sshfs.api")
+if api_ok then
+  wk.add({
+    mode = "n",
+    {
+      "<leader>rc",
+      function()
+        api.connect()
+      end,
+      desc = "RemoteSSHFS Connect",
+    },
+    {
+      "<leader>rd",
+      function()
+        api.disconnect()
+      end,
+      desc = "RemoteSSHFS Disconnect",
+    },
+    {
+      "<leader>re",
+      function()
+        api.edit()
+      end,
+      desc = "RemoteSSHFS Edit",
+    },
+  })
+end
 
 -- Lsp Normal Mappings
 
@@ -335,19 +368,19 @@ wk.add({
 
 wk.add({
   mode = "v",
-  { "<leader>s", ":Subvert/", desc = "Subvert inside selection" },
+  { "<leader>s",  ":Subvert/",                                     desc = "Subvert inside selection" },
   { "<leader>sw", '<cmd>lua require("spectre").open_visual()<CR>', desc = "Spectre current word" },
-  { "<leader>S", ":s/\\%V",   desc = "Replace inside selection" },
-  {
-    "<leader>p",
-    '"+p',
-    desc = "Paste(p) from clipboard",
-  },
-  {
-    "<leader>P",
-    '"+P',
-    desc = "Paste(P) from clipboard",
-  },
+  { "<leader>S",  ":s/\\%V",                                       desc = "Replace inside selection" },
+  -- {
+  --   "<leader>p",
+  --   '"+p',
+  --   desc = "Paste(p) from clipboard",
+  -- },
+  -- {
+  --   "<leader>P",
+  --   '"+P',
+  --   desc = "Paste(P) from clipboard",
+  -- },
   {
     "<leader>c",
     function()

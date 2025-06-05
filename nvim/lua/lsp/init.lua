@@ -6,18 +6,18 @@ require("lsp.mason")
 require("lsp.cmp")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local schemastore_ok, schemastore = pcall(require, "schemastore")
-if schemastore_ok then
-  lspconfig.jsonls.setup({
-    capabilities = capabilities,
-    settings = {
-      json = {
-        schemas = schemastore.json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  })
-end
+-- local schemastore_ok, schemastore = pcall(require, "schemastore")
+-- if schemastore_ok then
+--   lspconfig.jsonls.setup({
+--     capabilities = capabilities,
+--     settings = {
+--       json = {
+--         schemas = schemastore.json.schemas(),
+--         validate = { enable = true },
+--       },
+--     },
+--   })
+-- end
 
 -- lspconfig.lua_ls.setup({
 --   capabilities = capabilities,

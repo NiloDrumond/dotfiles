@@ -11,6 +11,9 @@ require("lazy").setup({
       require("gitpad").setup({
         dir = "~/notes",
         default_text = "",
+        on_attach = function(bufnr)
+          vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<Cmd>wq<CR>", { noremap = true, silent = true })
+        end,
       })
     end,
   },
@@ -364,18 +367,26 @@ require("lazy").setup({
       require("configs.spectre")
     end,
   },
-  -- {
-  --   "ray-x/go.nvim",
-  --   dependencies = { -- optional packages
-  --     "ray-x/guihua.lua",
-  --     "neovim/nvim-lspconfig",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require("lsp.go")
-  --   end,
-  --   event = { "CmdlineEnter" },
-  --   ft = { "go", "gomod" },
-  --   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
-  -- },
+  {
+    "nosduco/remote-sshfs.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("remote-sshfs").setup()
+      require("telescope").load_extension("remote-sshfs")
+    end,
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("lsp.go")
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  },
 })
