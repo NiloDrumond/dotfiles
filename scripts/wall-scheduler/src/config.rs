@@ -1,7 +1,7 @@
 use rand::seq::SliceRandom;
+use serde::Deserialize;
 use shellexpand::tilde;
 use std::{collections::HashMap, fs};
-use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct UserConfig {
@@ -44,26 +44,19 @@ impl Config {
         if self.map.is_empty() {
             return None;
         }
-        println!("{:?}", self);
 
         let mut map: Vec<(u32, &Vec<String>)> = self.map.iter().map(|(k, v)| (*k, v)).collect();
-        map.sort_by(|a, b| b.0.cmp(&a.0));
+        map.sort_by(|a, b| b.0.cmp(&a.0)); // descending
 
-        for (key, value) in map {
-            if hour >= key {
-                if value.len() == 1 {
-                    return Some(value[0].to_string());
-                }
-
-                let random_item = value.choose(&mut rand::thread_rng());
-                if let Some(item) = random_item {
-                    return Some(item.to_string());
-                }
-                return None;
+        // try to find the most recent past wallpaper
+        for (key, value) in &map {
+            if hour >= *key {
+                return value.choose(&mut rand::thread_rng()).cloned();
             }
         }
 
-        None
+        let (_, value) = map.first()?; // map is sorted descending, so first is latest
+        value.choose(&mut rand::thread_rng()).cloned()
     }
 }
 
@@ -76,7 +69,10 @@ impl From<UserConfig> for Config {
             .map(|(key, wallpapers)| {
                 (
                     key.parse().unwrap(),
-                    wallpapers.iter().map(|val| tilde(val).to_string()).collect(),
+                    wallpapers
+                        .iter()
+                        .map(|val| tilde(val).to_string())
+                        .collect(),
                 )
             })
             .collect();
