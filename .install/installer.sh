@@ -25,6 +25,7 @@ create_symlink mako ~/.config/mako
 create_symlink lf ~/.config/lf
 create_symlink kitty ~/.config/kitty
 create_symlink wlogout ~/.config/wlogout
+create_symlink wall-scheduler ~/.config/wall-scheduler
 
 # Files
 create_symlink ssh/config ~/.ssh/config

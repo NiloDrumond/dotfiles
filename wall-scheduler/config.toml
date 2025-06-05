@@ -1,0 +1,6 @@
+transitions = ["random"]
+
+[schedule]
+6 = ["~/wallpaper/Ithya_D019.png", "~/wallpaper/Ithya_D015.png"]
+12 = ["~/wallpaper/Ithya_D036.png", "~/wallpaper/Ithya_D026.png"]
+18 = ["~/wallpaper/Ithya_D006.png", "~/wallpaper/Ithya_D040.png", "~/wallpaper/Ithya_D038.png"]
