@@ -99,3 +99,10 @@ if [ -f "$LFCD" ]; then
 fi
 
 # eval $(keychain --eval --agents ssh id_ed25519)
+
+# bun completions
+[ -s "/home/nilo/.bun/_bun" ] && source "/home/nilo/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
