@@ -19,4 +19,5 @@ end
 
 wk.add({
   mode = "n",
+  { "<leader>ci", "<cmd>GoImports<CR>", desc = "TS add missing imports" },
 }, { bufnr = bufnr })

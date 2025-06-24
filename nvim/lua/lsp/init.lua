@@ -1,6 +1,6 @@
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_ok then
-  return
+	return
 end
 require("lsp.mason")
 require("lsp.cmp")
@@ -32,21 +32,23 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- lspconfig.bashls.setup({})
 
 lspconfig.eslint.setup({
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    local wk_ok, wk = pcall(require, "which-key")
-    if wk_ok then
-      wk.add(
-        { mode = "n", { "<leader>cf", "<cmd>EslintFixAll<CR>", desc = "Eslint fix all" } },
-        { bufnr = bufnr }
-      )
-    end
-  end,
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		local wk_ok, wk = pcall(require, "which-key")
+		if wk_ok then
+			wk.add(
+				{ mode = "n", { "<leader>cf", "<cmd>EslintFixAll<CR>", desc = "Eslint fix all" } },
+				{ bufnr = bufnr }
+			)
+		end
+	end,
 })
 
-local simple_servers = { "bashls", "lua_ls", "tailwindcss", "jsonls", "taplo", "gopls", "prismals" }
+local simple_servers = { "bashls", "lua_ls", "tailwindcss", "jsonls", "taplo", "gopls", "prismals", "biome" }
 for _, server in ipairs(simple_servers) do
-  lspconfig[server].setup({
-    capabilities = capabilities,
-  })
+	lspconfig[server].setup({
+		capabilities = capabilities,
+	})
 end
+
+vim.lsp.enable("biome")

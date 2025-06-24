@@ -208,7 +208,8 @@ wk.add({
   {
     "<leader><leader>",
     function()
-      vim.lsp.buf.format({ async = true })
+      require("conform").format();
+      -- vim.lsp.buf.format({ async = true })
     end,
     desc = "Format",
   },
@@ -221,7 +222,7 @@ wk.add({
   { "<leader>az", "<cmd>ZenMode<cr>",                desc = "Zen mode" },
   { "<leader>ae", "<cmd>ene<cr>",                    desc = "New buffer" },
   { "<leader>e",  "<cmd>NvimTreeFindFile<CR>",       desc = "Tree: Find file" },
-  { "<leader>ar", "<cmd>set norelativenumber!<CR>",  desc = "Toggle relative numbers" },
+  { "<leader>/r", "<cmd>set norelativenumber!<CR>",  desc = "Toggle relative numbers" },
   { "<leader>f",  group = "Find" },
   {
     "<leader>fc",
@@ -304,6 +305,11 @@ wk.add({
       vim.lsp.buf.rename()
     end,
     desc = "Rename",
+  },
+  {
+    "<leader>cx",
+    "<cmd>LspRestart<CR>",
+    desc = "Restart LSP",
   },
   {
     "<leader>cf",

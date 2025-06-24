@@ -19,8 +19,8 @@ require("typescript-tools").setup({
   tsserver = {
     sourceMaps = true,
     sourceMapPathOverrides = {
-      ["/turbopack/[project]/*"] = "${webRoot}/*"
-    }
+      ["/turbopack/[project]/*"] = "${webRoot}/*",
+    },
   },
   -- root_dir = function(fname)
   --   local root_files = {
