@@ -83,6 +83,21 @@ if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
 
+# Start ssh-agent if not running and load env
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 8h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+
+# Always source the env file (if it exists)
+if [[ -f "$XDG_RUNTIME_DIR/ssh-agent.env" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" > /dev/null
+fi
+
+# Add your key if not already loaded
+ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ed25519
+
+
+
 
 #  ╭──────────────────────────────────────────────────────────╮
 #  │ Dependencies                                             │
