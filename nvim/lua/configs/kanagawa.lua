@@ -67,7 +67,7 @@ require("kanagawa").setup({
       CodewindowBorder = { fg = theme.ui.float.bg },
 
       ArrowIcon = { fg = palette.peachRed, bg = "NONE" },
-      LeapLabelPrimary = { bg = palette.peachRed, fg = palette.sumiInk2 }
+      LeapLabelPrimary = { bg = palette.peachRed, fg = palette.sumiInk2 },
     }
   end,
   theme = "wave",  -- Load "wave" theme when 'background' option is not set

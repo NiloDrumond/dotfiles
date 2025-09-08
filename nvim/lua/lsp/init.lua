@@ -44,7 +44,28 @@ lspconfig.eslint.setup({
 	end,
 })
 
-local simple_servers = { "bashls", "lua_ls", "tailwindcss", "jsonls", "taplo", "gopls", "prismals", "biome" }
+lspconfig.tailwindcss.setup({
+	capabilities = capabilities,
+	settings = {
+		tailwindCSS = {
+			experimental = {
+				classRegex = {
+					"tw`([^`]*)",
+					'tw="([^"]*)',
+					'tw={"([^"}]*)',
+					"tw\\.\\w+`([^`]*)",
+					"tw\\(.*?\\)`([^`]*)",
+					{ "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+					{ "classnames\\(([^)]*)\\)", "'([^']*)'" },
+					{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+					{ "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+				},
+			},
+		},
+	},
+})
+
+local simple_servers = { "bashls", "lua_ls", "jsonls", "taplo", "gopls", "prismals", "biome" }
 for _, server in ipairs(simple_servers) do
 	lspconfig[server].setup({
 		capabilities = capabilities,
