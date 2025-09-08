@@ -1,0 +1,38 @@
+output "Sharp Corporation 0x1551 Unknown" {
+  scale 1.25
+  alias $INTERNAL
+}
+
+output "Ancor Communications Inc MG248 H3LMQS012580" {
+  mode 1920x1080@60Hz
+  scale 1
+  alias $ASUS
+}
+
+output "Samsung Electric Company Odyssey G60SD HNAX900098" {
+  mode 2560x1440@120Hz
+  scale 1.3333333
+  alias $SAMSUNG
+}
+
+profile default {
+	output $INTERNAL enable scale 1.25
+}
+
+profile full_dock {
+  output $INTERNAL disable
+  output $ASUS enable position -1920,0
+  output $SAMSUNG enable position 0,0
+}
+
+profile asus_only {
+  output $INTERNAL disable
+  output $ASUS enable
+}
+
+profile samsung_only {
+  output $SAMSUNG enable
+  output $ASUS disable
+}
+
+
