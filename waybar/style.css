@@ -50,7 +50,7 @@ window#waybar {
   border: 0px;
   font-weight: bold;
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
   color: @textcolor1;
 }
 
@@ -105,7 +105,7 @@ tooltip label {
   padding: 0px 10px 0px 10px;
   border-radius: 16px;
   color: @textcolor1;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
 }
 
@@ -162,7 +162,7 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #custom-exit {
-  font-size: 20px;
+  font-size: 18px;
   padding: 0 24px 0 10px;
   border-radius: 0 16px 16px 0;
   color: @textcolor1;
@@ -178,7 +178,7 @@ window#waybar.empty #window {
   border-radius: 16px;
   margin: 0 8px;
   background-color: @backgrounddark;
-  font-size: 15px;
+  font-size: 14px;
   color: @textcolor1;
 }
 
@@ -206,7 +206,7 @@ window#waybar.empty #window {
 
 #clock {
   background-color: @backgrounddark;
-  font-size: 16px;
+  font-size: 14px;
   color: @textcolor1;
   padding: 0px 10px 0px 10px;
 }
@@ -220,7 +220,7 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #network {
-  font-size: 16px;
+  font-size: 14px;
   background-color: @backgrounddark;
   color: @textcolor1;
   padding: 0px 10px;
@@ -248,7 +248,7 @@ window#waybar.empty #window {
 #bluetooth.on,
 #bluetooth.connected {
   background-color: @backgrounddark;
-  font-size: 16px;
+  font-size: 14px;
   color: @textcolor1;
   padding: 0px 10px;
 }
@@ -259,7 +259,7 @@ window#waybar.empty #window {
 
 #battery {
   background-color: @backgrounddark;
-  font-size: 16px;
+  font-size: 14px;
   color: @textcolor1;
   padding: 0px 10px;
 }
@@ -297,7 +297,7 @@ window#waybar.empty #window {
   background-color: @backgrounddark;
   padding: 0px 10px 0 18px;
   border-radius: 16px 0 0 16px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
@@ -328,7 +328,7 @@ window#waybar.empty #window {
 
 #pulseaudio {
   background-color: @backgrounddark;
-  font-size: 16px;
+  font-size: 14px;
   color: @textcolor1;
   padding: 0px 10px;
 }
