@@ -1,7 +1,3 @@
-local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_ok then
-	return
-end
 require("lsp.mason")
 require("lsp.cmp")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -31,7 +27,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- })
 -- lspconfig.bashls.setup({})
 
-lspconfig.eslint.setup({
+vim.lsp.config("eslint", {
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		local wk_ok, wk = pcall(require, "which-key")
@@ -44,7 +40,7 @@ lspconfig.eslint.setup({
 	end,
 })
 
-lspconfig.tailwindcss.setup({
+vim.lsp.config("tailwindcss", {
 	capabilities = capabilities,
 	settings = {
 		tailwindCSS = {
@@ -67,7 +63,7 @@ lspconfig.tailwindcss.setup({
 
 local simple_servers = { "bashls", "lua_ls", "jsonls", "taplo", "gopls", "prismals", "biome" }
 for _, server in ipairs(simple_servers) do
-	lspconfig[server].setup({
+	vim.lsp.config(server, {
 		capabilities = capabilities,
 	})
 end

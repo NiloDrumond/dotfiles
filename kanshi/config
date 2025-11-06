@@ -16,7 +16,7 @@ output "Samsung Electric Company Odyssey G60SD HNAX900098" {
 }
 
 profile default {
-	output $INTERNAL enable scale 1.25
+	output $INTERNAL enable 
 }
 
 profile full_dock {

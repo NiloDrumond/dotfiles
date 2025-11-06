@@ -7,7 +7,7 @@ end
 -- TODO: ensure installed for formatters:
 -- prettier, jsonlint
 mason.setup({
-  ensure_installed = { "prettier", "jsonlint", "shfmt", "rust-analyzer", "tailwindcss" },
+  ensure_installed = { "prettier", "jsonlint", "shfmt", "rust-analyzer", "tailwindcss", "lua-language-server", "bash-language-server" },
 })
 
 -- mason_lsp.setup({

@@ -42,7 +42,7 @@ require("kanagawa").setup({
       RainbowDelimiterGreen = { fg = palette.autumnGreen },
       RainbowDelimiterViolet = { fg = palette.oniViolet },
       RainbowDelimiterCyan = { fg = palette.dragonBlue },
-      -- NormalFloat = { bg = "none" },
+      NormalFloat = { bg = "none" },
       FloatBorder = { bg = "none" },
       FloatTitle = { bg = "none" },
 

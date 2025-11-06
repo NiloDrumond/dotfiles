@@ -96,7 +96,7 @@ require("nvim-tree").setup({
     enable = true,
   },
   view = {
-    width = 35,
+    width = 30,
   },
   renderer = {
     add_trailing = false,

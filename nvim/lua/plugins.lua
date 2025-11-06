@@ -108,8 +108,8 @@ require("lazy").setup({
 	},
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^5", -- Recommended
-		ft = { "rust" },
+		version = "^6", -- Recommended
+		lazy = false,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -361,14 +361,14 @@ require("lazy").setup({
 			require("configs.spectre")
 		end,
 	},
-	{
-		"nosduco/remote-sshfs.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-		config = function()
-			require("remote-sshfs").setup()
-			require("telescope").load_extension("remote-sshfs")
-		end,
-	},
+	-- {
+	-- 	"nosduco/remote-sshfs.nvim",
+	-- 	dependencies = { "nvim-telescope/telescope.nvim" },
+	-- 	config = function()
+	-- 		require("remote-sshfs").setup()
+	-- 		require("telescope").load_extension("remote-sshfs")
+	-- 	end,
+	-- },
 	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
@@ -383,105 +383,105 @@ require("lazy").setup({
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
-	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("avante").setup({
-				mappings = {
-					focus = "<leader>aF",
-				},
-				behaviour = {
-					support_paste_from_clipboard = true,
-				},
-				provider = "claude-haiku",
-				providers = {
-					-- haiku = {
-					-- 	__inherited_from = "claude",
-					-- 	model = "claude-3-5-haiku-20241022",
-					-- 	extra_request_body = {
-					-- 		temperature = 0.75,
-					-- 		max_tokens = 8192,
-					-- 	},
-					-- },
-					-- claude = {
-					-- 	model = "claude-3-5-sonnet-20241022",
-					-- 	extra_request_body = {
-					-- 		temperature = 0.75,
-					-- 		max_tokens = 8192,
-					-- 	},
-					-- },
-					lmstudio = {
-						__inherited_from = "openai",
-						endpoint = "http://192.168.0.8:1234/v1",
-						api_key_name = "OPENAI_API_KEY",
-						-- model = "mistralai/devstral-small-2507",
-						model = "google/gemma-3-12b",
-					},
-					ollama = {
-						endpoint = "http://192.168.0.8:11434",
-						model = "qwen2.5-coder:7b-instruct-q5_0",
-						extra = {
-							num_ctx = 32768,
-							think = false,
-						},
-					},
-				},
-			})
-		end,
-		-- version = false, -- Never set this value to "*"! Never!
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			--- The below dependencies are optional,
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
-			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
-			"stevearc/dressing.nvim", -- for input provider dressing
-			"folke/snacks.nvim", -- for input provider snacks
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-					},
-				},
-			},
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					file_types = { "markdown", "Avante" },
-          heading = {
-            -- enabled = false,
-            backgrounds = {
-              "NONE",
-              "NONE",
-              "NONE",
-              "NONE",
-              "NONE",
-              "NONE",
-            }
-          }
-				},
-				ft = { "markdown", "Avante" },
-			},
-		},
-	},
+	-- {
+	-- 	"yetone/avante.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("avante").setup({
+	-- 			mappings = {
+	-- 				focus = "<leader>aF",
+	-- 			},
+	-- 			behaviour = {
+	-- 				support_paste_from_clipboard = true,
+	-- 			},
+	-- 			provider = "claude-haiku",
+	-- 			providers = {
+	-- 				-- haiku = {
+	-- 				-- 	__inherited_from = "claude",
+	-- 				-- 	model = "claude-3-5-haiku-20241022",
+	-- 				-- 	extra_request_body = {
+	-- 				-- 		temperature = 0.75,
+	-- 				-- 		max_tokens = 8192,
+	-- 				-- 	},
+	-- 				-- },
+	-- 				-- claude = {
+	-- 				-- 	model = "claude-3-5-sonnet-20241022",
+	-- 				-- 	extra_request_body = {
+	-- 				-- 		temperature = 0.75,
+	-- 				-- 		max_tokens = 8192,
+	-- 				-- 	},
+	-- 				-- },
+	-- 				lmstudio = {
+	-- 					__inherited_from = "openai",
+	-- 					endpoint = "http://192.168.0.8:1234/v1",
+	-- 					api_key_name = "OPENAI_API_KEY",
+	-- 					-- model = "mistralai/devstral-small-2507",
+	-- 					model = "google/gemma-3-12b",
+	-- 				},
+	-- 				ollama = {
+	-- 					endpoint = "http://192.168.0.8:11434",
+	-- 					model = "qwen2.5-coder:7b-instruct-q5_0",
+	-- 					extra = {
+	-- 						num_ctx = 32768,
+	-- 						think = false,
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	-- version = false, -- Never set this value to "*"! Never!
+	-- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+	-- 	build = "make",
+	-- 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		--- The below dependencies are optional,
+	-- 		"echasnovski/mini.pick", -- for file_selector provider mini.pick
+	-- 		"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+	-- 		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+	-- 		"ibhagwan/fzf-lua", -- for file_selector provider fzf
+	-- 		"stevearc/dressing.nvim", -- for input provider dressing
+	-- 		"folke/snacks.nvim", -- for input provider snacks
+	-- 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+	-- 		"zbirenbaum/copilot.lua", -- for providers='copilot'
+	-- 		{
+	-- 			-- support for image pasting
+	-- 			"HakonHarnes/img-clip.nvim",
+	-- 			event = "VeryLazy",
+	-- 			opts = {
+	-- 				-- recommended settings
+	-- 				default = {
+	-- 					embed_image_as_base64 = false,
+	-- 					prompt_for_file_name = false,
+	-- 					drag_and_drop = {
+	-- 						insert_mode = true,
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		{
+	-- 			-- Make sure to set this up properly if you have lazy=true
+	-- 			"MeanderingProgrammer/render-markdown.nvim",
+	-- 			opts = {
+	-- 				file_types = { "markdown", "Avante" },
+	--          heading = {
+	--            -- enabled = false,
+	--            backgrounds = {
+	--              "NONE",
+	--              "NONE",
+	--              "NONE",
+	--              "NONE",
+	--              "NONE",
+	--              "NONE",
+	--            }
+	--          }
+	-- 			},
+	-- 			ft = { "markdown", "Avante" },
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
@@ -498,5 +498,62 @@ require("lazy").setup({
 		config = function()
 			require("lsp.conform")
 		end,
+	},
+	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		config = function()
+			require("oil").setup({
+				keymaps = {
+					["g?"] = { "actions.show_help", mode = "n" },
+					["<CR>"] = "actions.select",
+					-- ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+					-- ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+					["<C-t>"] = { "actions.select", opts = { tab = true } },
+					["<C-p>"] = "actions.preview",
+					["<C-c>"] = { "actions.close", mode = "n" },
+					["<leader>r"] = "actions.refresh",
+					["-"] = { "actions.parent", mode = "n" },
+					["_"] = { "actions.open_cwd", mode = "n" },
+					["`"] = { "actions.cd", mode = "n" },
+					["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+					["gs"] = { "actions.change_sort", mode = "n" },
+					["gx"] = "actions.open_external",
+					["g."] = { "actions.toggle_hidden", mode = "n" },
+					["g\\"] = { "actions.toggle_trash", mode = "n" },
+				},
+				use_default_keymaps = false,
+			})
+		end,
+		-- Optional dependencies
+		dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
+	},
+	{
+		"benomahony/oil-git.nvim",
+		dependencies = { "stevearc/oil.nvim" },
+		-- No opts or config needed! Works automatically
+	},
+	{
+		-- Make sure to set this up properly if you have lazy=true
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {
+			file_types = { "markdown", "Avante" },
+			heading = {
+				-- enabled = false,
+				backgrounds = {
+					"NONE",
+					"NONE",
+					"NONE",
+					"NONE",
+					"NONE",
+					"NONE",
+				},
+			},
+		},
+		ft = { "markdown", "Avante" },
 	},
 })

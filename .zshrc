@@ -55,7 +55,6 @@ fi
 
 alias fcd='cd "$(rg --files --hidden --no-messages | xargs -n1 dirname | sort -u | fzf)"'
 alias v="nvim"
-alias safev='NVIM_APPNAME=lazyvim nvim'
 alias rgf="rg --files --hidden | rg"
 alias rn=". ranger"
 alias gvim="nvim --listen ~/.cache/nvim/godot.pipe ."
@@ -77,7 +76,7 @@ eval "$(starship init zsh)"
 
 # SSH-Agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 8h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+    ssh-agent -t 16h > "$XDG_RUNTIME_DIR/ssh-agent.env"
 fi
 if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
@@ -120,4 +119,4 @@ fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-e fxport PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PATH"
