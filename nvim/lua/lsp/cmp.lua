@@ -4,7 +4,7 @@ local types = require("cmp.types")
 local lspkind = require("lspkind")
 
 local source_mapping = {
-  npm = "NPM",
+  -- npm = "NPM",
   crates = "CRA",
   nvim_lsp = "",
   -- nvim_lsp                = icons.code .. 'LSP',
@@ -87,7 +87,7 @@ cmp.setup({
     end, { "i", "s" }),
   },
   sources = {
-    { name = "npm",                    keyword_length = 4 },
+    -- { name = "npm",                    keyword_length = 4 },
     {
       name = "nvim_lsp",
       priority = 10,

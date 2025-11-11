@@ -142,14 +142,14 @@ require("lazy").setup({
 			require("configs.arrow")
 		end,
 	},
-	{
-		"David-Kunz/cmp-npm",
-		dependencies = { "nvim-lua/plenary.nvim", "onsails/lspkind.nvim" },
-		event = { "BufRead package.json" },
-		config = function()
-			require("cmp-npm").setup({})
-		end,
-	},
+	-- {
+	-- 	"David-Kunz/cmp-npm",
+	-- 	dependencies = { "nvim-lua/plenary.nvim", "onsails/lspkind.nvim" },
+	-- 	event = { "BufRead package.json" },
+	-- 	config = function()
+	-- 		require("cmp-npm").setup({})
+	-- 	end,
+	-- },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -247,6 +247,7 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lsp", lazy = false },
 			{ "hrsh7th/cmp-path", lazy = false },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help", lazy = false },
+			{ "onsails/lspkind.nvim", lazy = false },
 		},
 	},
 	{
@@ -556,4 +557,12 @@ require("lazy").setup({
 		},
 		ft = { "markdown", "Avante" },
 	},
+	-- {
+	-- 	"vuki656/package-info.nvim",
+	-- 	event = { "BufRead package.json" },
+	-- 	dependencies = { "MunifTanjim/nui.nvim" },
+	-- 	config = function()
+	-- 		require("package-info").setup()
+	-- 	end,
+	-- },
 })

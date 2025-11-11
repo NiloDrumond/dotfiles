@@ -33,3 +33,6 @@ create_symlink ssh/config ~/.ssh/config
 create_symlink .zshrc ~/.zshrc
 create_symlink starship/starship.toml ~/.config/starship.toml
 create_symlink nvm/default-packages ~/.nvm/default-packages
+
+create_symlink sytemd-services/wall-scheduler.service ~/.config/systemd/user/wall-scheduler.service
+create_symlink sytemd-services/wall-scheduler.timer ~/.config/systemd/user/wall-scheduler.timer

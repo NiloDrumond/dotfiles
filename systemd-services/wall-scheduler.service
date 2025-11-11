@@ -1,0 +1,9 @@
+[Unit]
+Description=Run wall-scheduler
+
+[Service]
+Type=oneshot
+ExecStart=/home/nilo/dotfiles/scripts/wall-scheduler/target/release/wall-scheduler
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=DISPLAY=:1
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus

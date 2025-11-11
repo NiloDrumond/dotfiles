@@ -16,16 +16,16 @@ end
 
 require("typescript-tools").setup({
   root_dir = get_workspace_root,
-  tsserver = {
-    init_options = {
-      maxTsServerMemory = 4096,
-    }
-    ,
-    sourceMaps = true,
-    sourceMapPathOverrides = {
-      ["/turbopack/[project]/*"] = "${webRoot}/*",
-    },
-  },
+  -- tsserver = {
+  --   init_options = {
+  --     maxTsServerMemory = 4096,
+  --   }
+  --   ,
+  --   sourceMaps = true,
+  --   sourceMapPathOverrides = {
+  --     ["/turbopack/[project]/*"] = "${webRoot}/*",
+  --   },
+  -- },
   -- root_dir = function(fname)
   --   local root_files = {
   --     "pnpm-workspace.yaml", -- Ensures it works with pnpm monorepos
