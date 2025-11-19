@@ -17,9 +17,9 @@ end
 --   },
 -- }
 
-wk.add({
-  mode = "n",
-  { "gp",         "<cmd>RustLsp openCargo<CR>",  desc = "Open Cargo.toml" },
-  { "<leader>aj", "<cmd>RustLsp joinLines<CR>",  desc = "Rust: join lines" },
-  { "<leader>ca", "<cmd>RustLsp codeAction<CR>", desc = "Rust: code action" },
-}, { bufnr = bufnr })
+-- wk.add({
+--   mode = "n",
+--   { "gp",         "<cmd>RustLsp openCargo<CR>",  desc = "Open Cargo.toml" },
+--   { "<leader>aj", "<cmd>RustLsp joinLines<CR>",  desc = "Rust: join lines" },
+--   { "<leader>ca", "<cmd>RustLsp codeAction<CR>", desc = "Rust: code action" },
+-- }, { bufnr = bufnr })

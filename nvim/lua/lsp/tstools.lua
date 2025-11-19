@@ -15,7 +15,7 @@ local function get_workspace_root()
 end
 
 require("typescript-tools").setup({
-  root_dir = get_workspace_root,
+  -- root_dir = get_workspace_root,
   -- tsserver = {
   --   init_options = {
   --     maxTsServerMemory = 4096,

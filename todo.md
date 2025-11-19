@@ -6,3 +6,7 @@
 - rg
 - fd
 - prettier
+
+
+# RUN:
+- `systemctl --user start wall-scheduler.service`
