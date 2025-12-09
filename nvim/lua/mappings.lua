@@ -62,23 +62,27 @@ wk.add({
 	{ "<F8>", "<cmd>TagbarToggle<CR>", desc = "Tagbar" },
 	{
 		"gd",
-		function()
-			vim.lsp.buf.definition()
-		end,
+		"<cmd>Telescope lsp_definitions<CR>",
+		-- function()
+		-- 	vim.lsp.buf.definition()
+		-- end,
 		desc = "Go to definition",
 	},
 	{
 		"gr",
-		function()
-			vim.lsp.buf.references({ includeDeclaration = false })
-		end,
+		"<cmd>Telescope lsp_references<CR>",
+		-- function()
+		--
+		-- 	vim.lsp.buf.references({ includeDeclaration = false })
+		-- end,
 		desc = "Go to references",
 	},
 	{
 		"gD",
-		function()
-			vim.lsp.buf.declaration()
-		end,
+		"<cmd>Telescope lsp_type_definitions<CR>",
+		-- function()
+		-- 	vim.lsp.buf.declaration()
+		-- end,
 		desc = "Go to declaration",
 	},
 	{ "]c", "<cmd>Gitsigns next_hunk<CR>", desc = "Next git hunk" },
@@ -183,13 +187,29 @@ wk.add({
 
 wk.add({
 	mode = "n",
+	{
+		"<leader>r",
+		function()
+			require("utils").remove_comments()
+		end,
+		desc = "Remove comments",
+	},
 	{ "<leader>o", "<cmd>Oil<CR>", desc = "Oil" },
 	{ "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', desc = "Toggle Spectre" },
 	{ "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', desc = "Spectre current word" },
-	{ "<leader>0", "<cmd>vertical resize -5<CR>", desc = "Resize -5" },
-	{ "<leader>-", "<cmd>vertical resize +5<CR>", desc = "Resize +5" },
+	{ "<leader>0", "<cmd>vertical resize -10<CR>", desc = "Resize -10" },
+	{ "<leader>-", "<cmd>vertical resize +10<CR>", desc = "Resize +10" },
 	{ "<leader>x", ":q<CR>", desc = "Close" },
-	{ "<leader>n", group = "Notes" },
+	{
+		"<leader>th",
+		function()
+			if client.server_capabilities.inlayHintProvider then
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+			end
+		end,
+		desc = "Toggle inlayhints",
+	},
+	{ "<leader>p", group = "Notes" },
 	{
 		"<leader>pn",
 		function()
@@ -219,6 +239,8 @@ wk.add({
 	-- { "<leader>p",  '"+p',                             desc = "Paste(p) from clipboard" },
 	-- { "<leader>P",  'o<ESC>"+p',                       desc = "Paste(P) from clipboard" },
 	{ "<leader>af", "<cmd>NvimTreeToggle<cr>", desc = "Toggle tree" },
+	{ "<leader>av", "<cmd>vsplit<CR>", desc = "Vertical split" },
+	{ "<leader>ah", "<cmd>split<CR>", desc = "Horizontal split" },
 	{ "<leader>a", group = "Actions" },
 	{ "<leader>az", "<cmd>ZenMode<cr>", desc = "Zen mode" },
 	{ "<leader>ae", "<cmd>ene<cr>", desc = "New buffer" },
@@ -226,7 +248,7 @@ wk.add({
 	{ "<leader>/r", "<cmd>set norelativenumber!<CR>", desc = "Toggle relative numbers" },
 	{ "<leader>f", group = "Find" },
 	{
-		"<leader>fc",
+		"<leader>fW",
 		function()
 			local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 			live_grep_args_shortcuts.grep_word_under_cursor()
@@ -239,6 +261,21 @@ wk.add({
 			require("configs.telescope").pickers.grep()
 		end,
 		desc = "Find word",
+	},
+	{
+		"<leader>fc",
+		"<cmd>Telescope current_buffer_fuzzy_find<CR>",
+		desc = "Current buffer fuzzy",
+	},
+	{
+		"<leader>fk",
+		"<cmd>Telescope keymaps<CR>",
+		desc = "Find keymaps",
+	},
+	{
+		"<leader>fd",
+		"<cmd>Telescope diagnostics<CR>",
+		desc = "Find diagnostics",
 	},
 	{
 		"<leader>ff",
@@ -296,7 +333,8 @@ wk.add({
 	{
 		"<leader>ca",
 		function()
-			vim.lsp.buf.code_action()
+			require("tiny-code-action").code_action()
+			-- vim.lsp.buf.code_action()
 		end,
 		desc = "Code action",
 	},

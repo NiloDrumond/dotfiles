@@ -1,6 +1,6 @@
 require("lsp.mason")
-require("lsp.cmp")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- local schemastore_ok, schemastore = pcall(require, "schemastore")
 -- if schemastore_ok then
@@ -69,3 +69,4 @@ for _, server in ipairs(simple_servers) do
 end
 
 vim.lsp.enable("biome")
+vim.lsp.enable("tailwindcss")

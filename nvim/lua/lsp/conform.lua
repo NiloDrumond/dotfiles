@@ -10,19 +10,31 @@ local function first(bufnr, ...)
 end
 
 require("conform").setup({
+	options = {},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		javascript = { "biome-check", "eslint_d", "prettier" },
 		javascriptreact = { "biome-check", "eslint_d", "prettier" },
-    typescript = {"biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier"},
-    typescriptreact = {"biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier"},
-    json = {"biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier"},
+		typescript = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
+		typescriptreact = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
+		json = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
 		css = { "biome-check" },
-		rust = { "rustfmt", lsp_format = "fallback" },
+		-- rust = { "rustfmt", lsp_format = "fallback" },
 		go = { "gofmt", "goimports" },
-    toml = {"taplo"}
+		toml = { "taplo" },
+		sql = { "pg_format", "injected", lsp_format = "last" },
+		rust = { "rustfmt", "injected", lsp_format = "last" },
 	},
 	formatters = {
+		injected = {
+			options = {
+				ignore_errors = false,
+				lang_to_formatters = {
+					sql = { "pg_format" },
+					rust = { "rustfmt" },
+				},
+			},
+		},
 		["biome-check"] = {
 			require_cwd = true,
 		},

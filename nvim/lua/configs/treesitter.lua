@@ -1,10 +1,13 @@
 local configs = require("nvim-treesitter.configs")
 
 configs.setup({
-  ensure_installed = { "lua", "javascript", "html", "typescript", "rust", "json", "toml", "tsx", "rasi", "go", "prisma"  },
+  ensure_installed = { "lua", "javascript", "html", "typescript", "rust", "json", "toml", "tsx", "rasi", "go", "prisma", "sql" },
   sync_install = false,
   highlight = { enable = true },
   indent = { enable = true },
+  injections = {
+    enable = true
+  }
 })
 
 require("nvim-ts-autotag").setup({
