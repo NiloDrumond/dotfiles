@@ -10,3 +10,6 @@ progress-color=over #313244
 
 [urgency=high]
 border-color=#FFA066
+
+[mode=do-not-disturb]
+invisible=1
