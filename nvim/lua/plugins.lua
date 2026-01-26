@@ -29,8 +29,8 @@ require("lazy").setup({
 		"dmmulroy/tsc.nvim",
 		config = function()
 			require("tsc").setup({
-        use_trouble_qflist = true,
-      })
+				use_trouble_qflist = true,
+			})
 		end,
 	},
 	{
@@ -682,5 +682,34 @@ require("lazy").setup({
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
-	}
+	},
+	{
+		"DrKJeff16/project.nvim",
+		dependencies = { -- OPTIONAL
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"ibhagwan/fzf-lua",
+		},
+		opts = {},
+	},
+	{ "nanotee/sqls.nvim" },
+	{
+		"mfussenegger/nvim-lint",
+		event = {
+			"BufReadPre",
+			"BufNewFile",
+		},
+		config = function()
+			local lint = require("lint")
+
+			lint.linters_by_ft = {
+				javascript = { "eslint_d" },
+				typescript = { "eslint_d" },
+				javascriptreact = { "eslint_d" },
+				typescriptreact = { "eslint_d" },
+				svelte = { "eslint_d" },
+				sql = { "sqruff" },
+			}
+		end,
+	},
 })

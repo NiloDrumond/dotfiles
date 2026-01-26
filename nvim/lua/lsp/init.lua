@@ -68,5 +68,7 @@ for _, server in ipairs(simple_servers) do
 	})
 end
 
+vim.lsp.enable("eslint")
 vim.lsp.enable("biome")
 vim.lsp.enable("tailwindcss")
+vim.lsp.enable("sqls")

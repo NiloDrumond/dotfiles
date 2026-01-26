@@ -15,14 +15,15 @@ require("conform").setup({
 		lua = { "stylua" },
 		javascript = { "biome-check", "eslint_d", "prettier" },
 		javascriptreact = { "biome-check", "eslint_d", "prettier" },
-		typescript = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
+		typescript = { "biome", "biome-check", "biome-organize-imports", "eslint", "prettier" },
 		typescriptreact = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
 		json = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
 		css = { "biome-check" },
 		-- rust = { "rustfmt", lsp_format = "fallback" },
 		go = { "gofmt", "goimports" },
 		toml = { "taplo" },
-		sql = { "pg_format", "injected", lsp_format = "last" },
+		-- sql = { "pg_format", "injected", lsp_format = "last" },
+		sql = { "sqruff" },
 		rust = { "rustfmt", "injected", lsp_format = "last" },
 	},
 	formatters = {
@@ -45,6 +46,9 @@ require("conform").setup({
 			require_cwd = true,
 		},
 		["eslint_d"] = {
+			require_cwd = true,
+		},
+		["eslint"] = {
 			require_cwd = true,
 		},
 		["prettier"] = {
