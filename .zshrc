@@ -7,14 +7,9 @@ export DISABLE_AUTO_UPDATE=true
 
 ZSH_THEME=""
 
-# this has to be set before loading plugins
-export NVM_COMPLETION=true
-export NVM_LAZY_LOAD=true
-
 plugins=(
     git
     fzf
-    zsh-nvm
     zsh-interactive-cd
     # Completions - Start
     # bun
@@ -103,7 +98,6 @@ ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ed25519
 #  │ Dependencies                                             │
 #  ╰──────────────────────────────────────────────────────────╯
 
-source /usr/share/nvm/init-nvm.sh
 source /usr/share/doc/find-the-command/ftc.zsh noprompt quiet
 eval "$(zoxide init zsh)"
 
@@ -121,4 +115,5 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
 eval "$(mise activate zsh)"

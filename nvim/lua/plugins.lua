@@ -90,7 +90,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"ggandor/leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		dependencies = { "tpope/vim-repeat" },
 		config = function()
 			vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
@@ -703,6 +703,7 @@ require("lazy").setup({
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
+				go = { "golangcilint" },
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
 				javascriptreact = { "eslint_d" },

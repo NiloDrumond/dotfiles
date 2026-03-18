@@ -61,13 +61,14 @@ vim.lsp.config("tailwindcss", {
 	},
 })
 
-local simple_servers = { "bashls", "lua_ls", "jsonls", "taplo", "gopls", "prismals", "biome" }
+local simple_servers = { "bashls", "lua_ls", "jsonls", "taplo", "gopls", "prismals", "biome", "svelte" }
 for _, server in ipairs(simple_servers) do
 	vim.lsp.config(server, {
 		capabilities = capabilities,
 	})
 end
 
+vim.lsp.enable("svelte")
 vim.lsp.enable("eslint")
 vim.lsp.enable("biome")
 vim.lsp.enable("tailwindcss")
