@@ -15,7 +15,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		javascript = { "biome-check", "eslint_d", "prettier" },
 		javascriptreact = { "biome-check", "eslint_d", "prettier" },
-		typescript = { "biome", "biome-check", "biome-organize-imports", "eslint", "prettier" },
+		typescript = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
 		typescriptreact = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
 		json = { "biome", "biome-check", "biome-organize-imports", "eslint_d", "prettier" },
 		css = { "biome-check" },

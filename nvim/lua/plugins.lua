@@ -689,6 +689,7 @@ require("lazy").setup({
 			projects = { -- define project roots
 				"~/dev/nuvidio/*",
         "~/dev/*",
+        "~/dev/amaterasu-player/apps/*",
 				"~/dotfiles",
 			},
 			picker = {
