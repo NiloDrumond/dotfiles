@@ -54,14 +54,15 @@ alias v="nvim"
 alias rgf="rg --files --hidden | rg"
 alias rn=". ranger"
 alias gvim="nvim --listen ~/.cache/nvim/godot.pipe ."
-alias pac-installed="pacman -Qqe | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
-alias pac-installed-all="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
-alias pac-list-unused="pacman -Qdt"
-alias pac-remove-unused="pacman -Rsn $(pacman -Qdtq)"
+alias pac-installed="yay -Qqe | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'"
+alias pac-installed-all="yay -Qq | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)'"
+alias pac-list-unused="yay -Qdt"
+pac-remove-unused() { pacman -Rsn $(pacman -Qdtq) }
 # alias dot="cd ~/dotfiles && nvim"
 alias doti="~/dotfiles/install.sh"
 alias archwiki="firefox /usr/share/doc/arch-wiki/html/en/Table_of_contents.html"
 # alias rvim="XDG_CONFIG_HOME=~/.config/nvim.rust XDG_DATA_HOME=~/.local/share/nvim.rust nvim -u .config/nvim.rust/init.lua"
+alias cd-user-applications="cd ~/.local/share/applications"
 
 #  ╭──────────────────────────────────────────────────────────╮
 #  │ Starship                                                 │

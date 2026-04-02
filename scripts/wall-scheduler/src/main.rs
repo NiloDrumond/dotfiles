@@ -19,6 +19,6 @@ fn main() {
         args.push(transition)
     }
 
-    let output = Command::new("swww").args(args).output().unwrap();
+    let output = Command::new("awww").args(args).output().unwrap();
     println!("{:?}", output)
 }

@@ -68,6 +68,20 @@ for _, server in ipairs(simple_servers) do
 	})
 end
 
+vim.lsp.config("sqls", {
+	capabilities = capabilities,
+	settings = {
+		sqls = {
+			connections = {
+				{
+					driver = "postgresql",
+					dataSourceName = "postgres://amaterasu:amaterasu@localhost:5432/amaterasu",
+				},
+			},
+		},
+	},
+})
+
 vim.lsp.enable("svelte")
 vim.lsp.enable("eslint")
 vim.lsp.enable("biome")

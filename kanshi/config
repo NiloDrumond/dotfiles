@@ -21,8 +21,8 @@ profile default {
 
 profile full_dock {
   output $INTERNAL disable
-  output $ASUS enable position -1920,0
   output $SAMSUNG enable position 0,0
+  output $ASUS enable position -1920,0
 }
 
 profile asus_only {
